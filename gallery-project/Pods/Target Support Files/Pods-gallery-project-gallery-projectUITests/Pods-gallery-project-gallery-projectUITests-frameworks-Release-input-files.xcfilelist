@@ -1,0 +1,4 @@
+${PODS_ROOT}/Target Support Files/Pods-gallery-project-gallery-projectUITests/Pods-gallery-project-gallery-projectUITests-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
+${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework
+${BUILT_PRODUCTS_DIR}/iOSDropDown/iOSDropDown.framework
