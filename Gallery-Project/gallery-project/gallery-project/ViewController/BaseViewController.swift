@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class BaseViewController: UIViewController {
-    
+    var menu: UIView = SlideMenu()
     var spinner = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
     var loadingView: UIView = UIView()
     var bgView: UIView = UIView()
@@ -30,7 +30,7 @@ class BaseViewController: UIViewController {
             view.endEditing(true)
         }
     
-    func showActivityIndicator() {
+    func showActivityIndicator(titleMessage: String) {
         DispatchQueue.main.async {
             self.loadingView = UIView()
             self.bgView = UIView()
@@ -45,18 +45,22 @@ class BaseViewController: UIViewController {
             self.loadingView.frame = CGRect(x: 0.0, y: 0.0, width: 300.0, height: 200.0)
             self.loadingView.center = self.view.center
             self.loadingView.backgroundColor = .black
-            self.loadingView.alpha = 0.8
+            self.loadingView.alpha = 1
             self.loadingView.clipsToBounds = true
             self.loadingView.layer.cornerRadius = 10
 
-            self.spinner = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
+            self.spinner = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.whiteLarge)
             self.spinner.frame = CGRect(x: 0.0, y: 0.0, width: 80.0, height: 80.0)
             self.spinner.center = self.view.center
 
             
-            self.labl.frame = CGRect(x: self.loadingView.frame.size.width/2 , y: self.loadingView.frame.origin.y + 20, width:  100.0, height: 70.0)
+            self.labl.frame = CGRect(x: self.loadingView.frame.origin.x , y: self.loadingView.frame.origin.y + 20, width:  self.loadingView.frame.width, height: 70.0)
+            self.labl.numberOfLines = 2
+            self.labl.alpha = 0.8
+            self.labl.textAlignment = NSTextAlignment.center
+            self.labl.font = .boldSystemFont(ofSize: 18.0)
             self.labl.textColor = ColorCode.greenColor
-            self.labl.text = "Loading...!!!"
+            self.labl.text = titleMessage
             
             
             self.view.addSubview(self.loadingView)
@@ -79,6 +83,14 @@ class BaseViewController: UIViewController {
             self.labl.removeFromSuperview()
             self.spinner.removeFromSuperview()
         }
+    }
+    
+    func customView(){
+//        menu.frame = CGRect(x: 0, y: 0, width: ConstantHeight.screenWidth, height: ConstantHeight.screenHeight)
+//        self.view.addSubview(menu)
+//        self.menu.alpha = 0.5
+//        self.view.bringSubviewToFront(menu)
+//        self.menu.clipsToBounds = true
     }
 }
 

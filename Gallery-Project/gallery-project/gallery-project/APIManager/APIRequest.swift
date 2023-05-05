@@ -10,14 +10,15 @@ import UIKit
 import Alamofire
 
 struct APIUrls {
-    static let UserLogin = "api/Authorization/Login"
-    static let UserRegistration = "api/Authorization/RegisterUser"
-    static let VerifyRegistration =  "api/Authorization/VerifyRegistration"
-    static let GenerateOtp = "api/Authorization/GenerateOtp"
-    static let ForgotPassword = "api/Authorization/ForgotPassword"
-    static let ShowImage = "api/User/ShowImages"
-    static let AddImage = "api/User/AddImage"
-    static let DeleteImage = "api/User/DeleteImage"
+    static let UserLogin = "api/v1/Authorization/Login"
+    static let UserRegistration = "api/v1/Authorization/RegisterUser"
+    static let VerifyRegistration =  "api/v1/Authorization/VerifyRegistration"
+    static let GenerateOtp = "api/v1/Authorization/GenerateOtp"
+    static let ForgotPassword = "api/v1/Authorization/ForgotPassword"
+    static let ShowImage = "api/v1/User/ShowImages"
+    static let AddImage = "api/v1/User/AddImage"
+    static let DeleteImage = "api/v1/User/DeleteImage"
+    static let UserDetails = "api/v1/User/userDetails"
 }
 
 class APIManager : NSObject {
@@ -119,9 +120,9 @@ class APIManager : NSObject {
             for (key, value) in parameters
             {
                 
-                 if value is Int {
+                if value is Int {
                     
-                     if let valueSet = ((value) as! Int).description.data(using: .utf8) {
+                    if let valueSet = ((value) as! Int).description.data(using: .utf8) {
                         multipartFormData.append(valueSet, withName: key)
                     }
                     
@@ -134,7 +135,7 @@ class APIManager : NSObject {
         }, usingThreshold:UInt64.init(),
                          to: "\(Constant.BASE_URL)\(APIUrls.UserRegistration)",
                          method: .post,
-                  headers: headers,
+                         headers: headers,
                          encodingCompletion: { (result) in
             
             switch result {
@@ -327,6 +328,7 @@ class APIManager : NSObject {
                 upload.responseJSON { response in
                     if let result = response.result.value {
                         let JSON = result as! NSDictionary
+                        print(JSON["message"] as! String)
                         completion(JSON["statusCode"]
                                    as! Int , JSON["message"] as! String)
                     }
@@ -340,8 +342,6 @@ class APIManager : NSObject {
     }
     
     class func deleteImageRequestAPI(token: String ,imageId: Int , completion: @escaping (Int , String) -> ()){
-        let parameters :[String: Any] = ["id" : 0]
-        
         let base_url = "\(Constant.BASE_URL)\(APIUrls.DeleteImage)"
         guard let url = URL.init(string: base_url) else {
             return
@@ -350,7 +350,7 @@ class APIManager : NSObject {
         
         urlRequest.httpMethod = "POST"
         
-        let params :[String: Any] = ["id" : 3]
+        let params :[String: Any] = ["id" : imageId]
         
         let jsonData = try? JSONSerialization.data(withJSONObject: params)
         urlRequest.httpBody = jsonData
@@ -373,8 +373,40 @@ class APIManager : NSObject {
             if let dataObj = try? JSONDecoder().decode(DeleteImage.self, from: data ) {
                 completion(dataObj.statusCode, dataObj.message)
             }
-        }.resume()}
+        }.resume()
+    }
     
+    
+    class func getUserDetailsRequestAPI(token: String , completion:@escaping(GetUserDetail?)->()){
+        let base_url = "\(Constant.BASE_URL)\(APIUrls.UserDetails)"
+        guard let url = URL.init(string: base_url) else {
+            return
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue( "Bearer \(token)", forHTTPHeaderField: "Authorization")
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if  let errors = error{
+                print(errors.localizedDescription)
+            }
+            
+            guard let data = data, error == nil else {
+                print(error?.localizedDescription ?? "No data")
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                let response = try decoder.decode(GetUserDetail.self, from: data)
+                completion(response)
+            } catch {
+                print("Error decoding JSON data: \(error)")
+            }
+        }.resume()
+    }
+    
+
 }
 
 

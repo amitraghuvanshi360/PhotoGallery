@@ -117,7 +117,7 @@ extension NewPasswordVC{
                 }
                 DispatchQueue.main.async {
                     if unwrapData.statusCode == 200 {
-                        AlertController.alertWithCompletionHandler(title: Constant.error, message: unwrapData.message, viewController: self, completionOnOkButton: {
+                        AlertController.alertWithCompletionHandler(title: Constant.success, message: unwrapData.message, viewController: self, completionOnOkButton: {
                             let moveToNext = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
                             self.navigationController?.pushViewController(moveToNext, animated: true)
                         })
@@ -156,7 +156,7 @@ extension NewPasswordVC{
                     AlertController.alertWithCompletionHandler(title: Constant.success, message: Constant.optResendMessage, viewController: self) { [self] in
                     }
                 }else{
-                    AlertController.CreateAlertMessage(title: Constant.success, message: errorMessage, viewController: self)
+                    AlertController.CreateAlertMessage(title: Constant.error, message: errorMessage, viewController: self)
                 }
             }
         })

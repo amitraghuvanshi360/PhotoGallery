@@ -70,43 +70,8 @@ class LoginVC: BaseViewController {
             return
         }
 
-        self.showActivityIndicator()
-        DispatchQueue.global().async {
-  
-            APIManager.LoginRequestAPI(useremail: userEmail, userpassword: userPassword){ userModelData, errorMessage  in
-                DispatchQueue.main.async {
-                    guard let unwappedData = userModelData else {
-                        return
-                    }
-                    if unwappedData.statusCode == 200 {
-                        if let innerData = unwappedData.data {
-                            self.setUserDefaultsData(email: innerData.email, expiration: innerData.expiration, token: innerData.token)
-                            self.hideActivityIndicator()
-                            AlertController.alertWithCompletionHandler(title: Constant.success, message: errorMessage, viewController: self) { [self] in
-                                let viewController =  self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-                                self.navigationController?.pushViewController(viewController, animated: true)
-                            }
-                        }
-                    }else if unwappedData.statusCode == 202{
-                        self.hideActivityIndicator()
-                        AlertController.alertWithCompletionHandler(title: Constant.error, message: unwappedData.message, viewController: self, completionOnOkButton: {
-                            let viewController =  self.storyboard?.instantiateViewController(withIdentifier: "NewPasswordVC") as! NewPasswordVC
-                            viewController.isHideShow = ((self.isFieldShow) != false)
-                            viewController.emailAddress = userEmail
-                            self.navigationController?.pushViewController(viewController, animated: true)
-                            
-                        })
-                    }else {
-                        self.hideActivityIndicator()
-                        AlertController.CreateAlertMessage(title: Constant.error, message: errorMessage, viewController: self)
-                    }
-                }
-            }
-        }
-        
-//        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5)) {
-//            self.hideActivityIndicator()
-//        }
+        self.showActivityIndicator(titleMessage: Constant.isPendingMessage)
+        self.validateUserdetailsAPI(useremail: userEmail, password: userPassword)
     }
 }
 
@@ -156,12 +121,46 @@ extension LoginVC{
 
 
 extension LoginVC {
+//    save data in user default
     func setUserDefaultsData(email: String , expiration: String , token: String){
         UserDefaults.standard.set(email as String, forKey: "useremail")
         UserDefaults.standard.set(token, forKey: "token")
         UserDefaults.standard.set(expiration, forKey: "expiration")
         UserDefaults.standard.object(forKey: "useremail")
         UserDefaults.standard.object(forKey: "token")
-        print(UserDefaults.standard.object(forKey: "token"))
+    }
+    
+    func validateUserdetailsAPI(useremail: String, password: String){
+        DispatchQueue.global().async {
+            APIManager.LoginRequestAPI(useremail: useremail, userpassword: password){ userModelData, errorMessage  in
+                DispatchQueue.main.async {
+                    guard let unwappedData = userModelData else {
+                        return
+                    }
+                    if unwappedData.statusCode == 200 {
+                        if let innerData = unwappedData.data {
+                            self.setUserDefaultsData(email: innerData.email, expiration: innerData.expiration, token: innerData.token)
+                            self.hideActivityIndicator()
+                            AlertController.alertWithCompletionHandler(title: Constant.success, message: errorMessage, viewController: self) { [self] in
+                                let viewController =  self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+                                self.navigationController?.pushViewController(viewController, animated: true)
+                            }
+                        }
+                    }else if unwappedData.statusCode == 202{
+                        self.hideActivityIndicator()
+                        AlertController.alertWithCompletionHandler(title: Constant.error, message: unwappedData.message, viewController: self, completionOnOkButton: {
+                            let viewController =  self.storyboard?.instantiateViewController(withIdentifier: "NewPasswordVC") as! NewPasswordVC
+                            viewController.isHideShow = ((self.isFieldShow) != false)
+                            viewController.emailAddress = useremail
+                            self.navigationController?.pushViewController(viewController, animated: true)
+                            
+                        })
+                    }else {
+                        self.hideActivityIndicator()
+                        AlertController.CreateAlertMessage(title: Constant.error, message: errorMessage, viewController: self)
+                    }
+                }
+            }
+        }
     }
 }

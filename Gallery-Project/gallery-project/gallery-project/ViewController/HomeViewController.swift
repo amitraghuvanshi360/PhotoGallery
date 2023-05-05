@@ -8,15 +8,24 @@
 
 import UIKit
 
+enum controllerViewType: String{
+    case profile = "Account Details"
+    case setting = "Settings"
+    case privacy = "Privacy"
+    case feedback = "Feedback"
+    case rate = "Rate"
+    case signout = "SignOut"
+}
 
-
-class HomeViewController: BaseViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate{
-
-    // MARK: IBOutlets and variable decleration
+class HomeViewController: BaseViewController , UIImagePickerControllerDelegate & UINavigationControllerDelegate{
     
+    // MARK: IBOutlets and variable declaration
     var imagePicker = UIImagePickerController()
     var itemHeight: Int = 0
     var currentIndex: Int = 0
+    var isSlideHidden = false
+    @IBOutlet weak var assertBgView: UIView!
+    @IBOutlet weak var slideMenuView: SlideMenu!
     @IBOutlet private weak var firstCollectionView: UICollectionView!
     @IBOutlet private weak var viewHeight: NSLayoutConstraint!
     
@@ -32,14 +41,19 @@ class HomeViewController: BaseViewController, UIImagePickerControllerDelegate & 
         super.viewDidLoad()
         self.setLayout()
         self.getImageAPI()
-//        self.deleteImageAPI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
     
-//   MARK: Upload image Action
+    //    MARK: DashBoard Menu Action
+    @IBAction func dashboardAction(_ sender: Any){
+        self.slideMenuView.delegate = self
+        self.showHideSlideMenu(isHidden: isSlideHidden)
+    }
+    
+    //   MARK: Upload image Action
     @IBAction func uploadImageAction(_ sender: UIButton) {
         // setting picker delegates and source
         if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
@@ -49,37 +63,87 @@ class HomeViewController: BaseViewController, UIImagePickerControllerDelegate & 
             present(imagePicker, animated: true, completion: nil)
         }
     }
-   // image picking
+    // image picking
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true, completion: nil)
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            let token =  UserDefaults.standard.object(forKey: "token")
-            APIManager.uploadImageRequestAPI(token: token as! String , selectedProfile: image, completion: {_,_ in
-
-            })
+            self.showActivityIndicator(titleMessage: Constant.isImageUploading)
+            
+            self.uploadImageAPI(image: image)
             viewHeight.constant  = CGFloat((Double(self.imageData.count) / 2.0).rounded())  * (UIScreen.main.bounds.width + 20) / 2.0
-//            self.imageData.reverse()
         }
         self.firstCollectionView.reloadData()
         self.secondCollectionView.reloadData()
-
+        
     }
     
 }
 
+
+extension HomeViewController: PassDataDelegate{
+    func sendData(indexPath: String) {
+
+        switch indexPath {
+        case controllerViewType.profile.rawValue:
+            let push =  self.storyboard?.instantiateViewController(withIdentifier: "ProfileDetailVC") as! ProfileDetailVC
+            self.navigationController?.pushViewController(push, animated: true)
+        
+        case controllerViewType.privacy.rawValue:
+            if let url = URL(string: "https://www.q-tickets.com/Content/PrivacyPolicy") {
+                UIApplication.shared.open(url)
+            }
+            
+        case controllerViewType.feedback.rawValue:
+            let push =  self.storyboard?.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
+            self.navigationController?.pushViewController(push, animated: true)
+
+            
+        case controllerViewType.signout.rawValue:
+            let push =  self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
+            self.navigationController?.pushViewController(push, animated: true)
+            
+
+        default:
+            print("something went wrong")
+        }
+    }
+    
+    
+}
+
 extension HomeViewController{
+    //   MARK: fetch images from API
     func getImageAPI(){
         let token =  UserDefaults.standard.object(forKey: "token")
-        APIManager.getImageRequestAPI(token: token as! String, completion: { completeData in
-            
-            self.imageData = completeData.data
-            
-            DispatchQueue.main.async { [self] in
-                viewHeight.constant  = CGFloat((Double(self.imageData.count) / 2.0).rounded())  * (UIScreen.main.bounds.width + 20) / 2.0
-                self.firstCollectionView.reloadData()
-                self.secondCollectionView.reloadData()
+        
+        DispatchQueue.global().async {
+            APIManager.getImageRequestAPI(token: token as! String, completion: { completeData in
+                self.imageData = completeData.data
+                DispatchQueue.main.async { [self] in
+                    viewHeight.constant  = CGFloat((Double(self.imageData.count) / 2.0).rounded())  * (UIScreen.main.bounds.width + 20) / 2.0
+                    self.firstCollectionView.reloadData()
+                    self.secondCollectionView.reloadData()
+                }
+            })
+        }
+    }
+    
+    func uploadImageAPI(image: UIImage){
+        let token =  UserDefaults.standard.object(forKey: "token")
+        DispatchQueue.global().async {
+        APIManager.uploadImageRequestAPI(token: token as! String , selectedProfile: image, completion: {statusCode, message in
+            if statusCode == 200{
+                DispatchQueue.main.async { [self] in
+                    self.hideActivityIndicator()
+                    AlertController.alertWithCompletionHandler(title: Constant.success, message: message, viewController: self, completionOnOkButton: {
+                        self.getImageAPI()
+                        self.firstCollectionView.reloadData()
+                        self.secondCollectionView.reloadData()
+                    })
+                }
             }
         })
+        }
     }
 }
 
@@ -97,7 +161,6 @@ extension HomeViewController : UICollectionViewDelegate , UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         if collectionView == self.firstCollectionView{
             let cell1 = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
             if self.imageData.isEmpty{
@@ -112,7 +175,6 @@ extension HomeViewController : UICollectionViewDelegate , UICollectionViewDataSo
                 cell2.secondImageVw.image = UIImage(named: "emptyImage")
                 return cell2
             }
-            
             cell2.setData(obj: self.imageData[indexPath.row])
             return cell2
         }
@@ -129,7 +191,6 @@ extension HomeViewController : UICollectionViewDelegate , UICollectionViewDataSo
         }
         self.navigationController?.pushViewController(imageVc, animated: true)
     }
- 
 } // extension body end
 
 //MARK: Collection view delegate for FlowLayout and cell sizing
@@ -162,7 +223,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout{
 
 // MARK: Initial layout setup
 extension HomeViewController{
-   // layout setup
+    // layout setup
     func setLayout(){
         self.firstCollectionView.delegate = self
         self.firstCollectionView.dataSource = self
@@ -172,8 +233,8 @@ extension HomeViewController{
         
         self.uploadBttn.layer.cornerRadius = min(self.uploadBttn.frame.size.height,self.uploadBttn.frame.size.width) / 2.0
         self.uploadBttn.layer.borderWidth = 1
-//        let timer = Timer.scheduledTimer(timeInterval: 4.0, target: self, selector: #selector(imageSlideToNext), userInfo: nil, repeats: true)
-//        self.view.setNeedsLayout()
+        //        let timer = Timer.scheduledTimer(timeInterval: 4.0, target: self, selector: #selector(imageSlideToNext), userInfo: nil, repeats: true)
+        //        self.view.setNeedsLayout()
     }
     
     // method for image sliding
@@ -185,6 +246,22 @@ extension HomeViewController{
         }
         self.firstCollectionView.scrollToItem(at: IndexPath(item: currentIndex, section: 0), at: .right, animated: true)
     }
+//    SlideMenu show hide action
+    func showHideSlideMenu(isHidden: Bool){
+        if isSlideHidden{
+            SlideMenu.animate(withDuration: 0.5, animations: { [self] in
+                    slideMenuView.frame.origin.x = -slideMenuView.frame.width
+                })
+            self.slideMenuView.isHidden = true
+            self.isSlideHidden = false
+        }else{
+            SlideMenu.animate(withDuration: 0.2, animations: { [self] in
+                    slideMenuView.frame.origin.x = +slideMenuView.frame.width
+                })
+            self.slideMenuView.isHidden = false
+            self.isSlideHidden = true
+        }
+    }
 }
 
 
@@ -192,9 +269,7 @@ extension HomeViewController{
 
 class CollectionViewCell : UICollectionViewCell {
     
-    @IBOutlet  weak var firstImageVw: UIImageView!
-    
-    
+    @IBOutlet weak var firstImageVw: UIImageView!
     func setData(obj: Datum) {
         if obj.userImage.contains("https://localhost:7184/") {
             let newImageUrl = obj.userImage.replacingOccurrences(of: "https://localhost:7184/", with: Constant.BASE_URL)
@@ -217,7 +292,6 @@ class SecondViewCell : UICollectionViewCell{
             self.secondImageVw.setImageData(urlStr: newImageUrl)
         }else{
             self.secondImageVw.setImageData(urlStr: obj.userImage)
-
         }
     }
 }

@@ -10,7 +10,7 @@ import UIKit
 
 struct Constant{
     
-    static let BASE_URL = "http://192.168.0.231:5251/"
+    static let BASE_URL = "http://192.168.1.140:5181/"
     
     static let ok = "Ok"
     static let done = "Done"
@@ -36,7 +36,10 @@ struct Constant{
     static let passowrdMissmatch = "Entered password not matching try to enter same password in both field"
     static let isGenderSelected = "Please select your gender"
     static let isOtpNull = "OTP field are nil please enter valid otp"
-    static let optResendMessage = "OTP resend to your email please enter valid tp "
+    static let optResendMessage = "OTP resend to your email please enter valid otp"
+    static let isImageUploading = "Please wait while we uploading you image..."
+    static let isPendingMessage = "Please wait...!!!"
+    static let isSignupLoading = "Please wait while we are sending your data"
 }
 
 
@@ -48,4 +51,15 @@ struct ConstantHeight {
     
     static let screenWidth = UIScreen.main.bounds.width
     static let screenHeight = UIScreen.main.bounds.height
+}
+
+
+struct Placeholder{
+    static let enterName = "Update your name"
+    static let enterEmail = "Update your email"
+    static let enterPhone = "Update phone number"
+    static let enterCountry = "Update your country"
+    static let enterGender = "Update your gender"
+    static let hobby = "Update your hobbies"
+
 }

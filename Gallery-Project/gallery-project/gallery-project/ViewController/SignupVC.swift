@@ -10,7 +10,7 @@ import UIKit
 import iOSDropDown
 
 class SignupVC: BaseViewController, UINavigationControllerDelegate {
-    
+//    MARK: IBOutlets and variable declaration
     
     private var country: Country?
     var countryData = [String]()
@@ -41,7 +41,7 @@ class SignupVC: BaseViewController, UINavigationControllerDelegate {
     
     @IBOutlet private weak var genderView: UIView!
     @IBOutlet private weak var genderMaleBttn: UIButton!
-    @IBOutlet private  weak var genderFemaleBttn: UIButton!
+    @IBOutlet private weak var genderFemaleBttn: UIButton!
     @IBOutlet private weak var genderOtherBttn: UIButton!
     
     
@@ -60,37 +60,8 @@ class SignupVC: BaseViewController, UINavigationControllerDelegate {
         self.profileOnTapGesture()
         self.getCountryListAPI()
         self.setHobbyListData()
-        
     }
-    
-    //   MARK: Country list API
-    private func getCountryListAPI(){
-        DispatchQueue.global().async {
-            // Api request for country
-            APIManager.countryListAPI{ data in
-                if let data  = data{
-                    for i in 0...(data.count) - 1 {
-                        self.countryTextField.optionArray.append("\((data[i].name)) ")
-                        self.codeTextField.optionArray.append("\(data[i].dialCode)")
-                        self.selectedCountry = data[i].name
-                        
-                    }
-                }
-                
-            }
-        }
-    }
-    
-    
-    //  MARK: Hobby list data
-    func setHobbyListData(){
-        self.hobbyTextField.optionArray = ["Singing" , "Dancing" ,"Cooking", "Running", "Painting"]
-        self.hobbyTextField.didSelect{( selectedText , index , id) in
-            self.hobbyTextField.text = "\(selectedText) \n index: \(index)"
-            self.hobbyIndex =  index
-            
-        }
-    }
+   
     //MARK: - IB Button Actions
     @IBAction func backButtonAction(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
@@ -115,20 +86,8 @@ class SignupVC: BaseViewController, UINavigationControllerDelegate {
             AlertController.CreateAlertMessage(title: Constant.error, message: error, viewController: self)
         }
         else{
-            DispatchQueue.global().async {
-                APIManager.registrationAPIRequest(name: name, email: email, gender: gender, country: country, password: password, phoneNumber: mobile, selectedProfile: (self.pickerImageData.last ?? UIImage(named: "null-data"))!, hobbies: hobbies ?? 0) { data, errorMessage  in
-                    if data == 200{
-                        AlertController.alertWithCompletionHandler(title: Constant.success, message: errorMessage, viewController: self) { [self] in
-                            let viewController =  self.storyboard?.instantiateViewController(withIdentifier: "NewPasswordVC") as! NewPasswordVC
-                            viewController.isHideShow = ((self.isFieldShow) != false)
-                            viewController.emailAddress = email
-                            self.navigationController?.pushViewController(viewController, animated: true)
-                        }
-                    }else{
-                        AlertController.CreateAlertMessage(title: Constant.error, message: errorMessage, viewController: self)
-                    }
-                }
-            }
+            self.showActivityIndicator(titleMessage: Constant.isSignupLoading)
+            self.registrationAPI(name: name, email: email, password: password, gender: gender, country: country, mobile: mobile, hobbies: hobbies ?? 0 )
         }
         
     }
@@ -180,7 +139,6 @@ extension SignupVC {
         
         self.continueBttn.layer.cornerRadius = 25
         self.continueBttn.layer.borderColor = ButtonColor.defaultColor.cgColor
-        
     }
     
 } // end extension body
@@ -188,12 +146,12 @@ extension SignupVC {
 
 //    MARK: Picker delegates
 extension SignupVC: UIImagePickerControllerDelegate {
+//    picker delegate and allow picking from photo library
     @objc func selectProfileImage() {
         picker.delegate = self
         picker.sourceType = .photoLibrary
         picker.allowsEditing = false
         present(picker, animated: true, completion: nil)
-        
     }
     
     // Profile tap gesture
@@ -213,10 +171,8 @@ extension SignupVC: UIImagePickerControllerDelegate {
     }
     
     
-    
     //    maximum length setup for mobile number
     override func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
         if textField == self.mobileTextField{
             var maxLength: Int = 10
             let currentStr:NSString = textField.text! as NSString
@@ -226,3 +182,52 @@ extension SignupVC: UIImagePickerControllerDelegate {
         return true
     }
 } // extension end body
+
+
+
+extension SignupVC{
+//   MARK: Registration API
+    func registrationAPI(name:String , email: String, password:String , gender:String , country:String, mobile:String , hobbies:Int){
+        DispatchQueue.global().async {
+            APIManager.registrationAPIRequest(name: name, email: email, gender: gender, country: country, password: password, phoneNumber: mobile, selectedProfile: (self.pickerImageData.last ?? UIImage(named: "null-data"))!, hobbies: hobbies ?? 0) { data, errorMessage  in
+                self.hideActivityIndicator()
+                if data == 200{
+                    AlertController.alertWithCompletionHandler(title: Constant.success, message: errorMessage, viewController: self) { [self] in
+                        let viewController =  self.storyboard?.instantiateViewController(withIdentifier: "NewPasswordVC") as! NewPasswordVC
+                        viewController.isHideShow = ((self.isFieldShow) != false)
+                        viewController.emailAddress = email
+                        self.navigationController?.pushViewController(viewController, animated: true)
+                    }
+                }else{
+                    AlertController.CreateAlertMessage(title: Constant.error, message: errorMessage, viewController: self)
+                }
+            }
+        }
+    }
+    
+    //   MARK: Country list API
+    private func getCountryListAPI(){
+        DispatchQueue.global().async {
+            // Api request for country
+            APIManager.countryListAPI{ data in
+                if let data  = data{
+                    for i in 0...(data.count) - 1 {
+                        self.countryTextField.optionArray.append("\((data[i].name)) ")
+                        self.codeTextField.optionArray.append("\(data[i].dialCode)")
+                        self.selectedCountry = data[i].name
+                        
+                    }
+                }
+            }
+        }
+    }
+    
+    //  MARK: Hobby list data
+    func setHobbyListData(){
+        self.hobbyTextField.optionArray = ["Singing" , "Dancing" ,"Cooking", "Running", "Painting"]
+        self.hobbyTextField.didSelect{( selectedText , index , id) in
+            self.hobbyTextField.text = "\(selectedText) \n index: \(index)"
+            self.hobbyIndex =  index
+        }
+    }
+}

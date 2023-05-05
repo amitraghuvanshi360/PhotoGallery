@@ -14,7 +14,7 @@ protocol GetDataFromForgetPasswordProtocol: AnyObject {
 }
 
 
-class ForgetPasswordVC: UIViewController{
+class ForgetPasswordVC: BaseViewController{
     var isFieldShow: Bool = false
     var completionGetData: ( (String) -> Void )?
     
@@ -40,13 +40,15 @@ class ForgetPasswordVC: UIViewController{
         }
         if !Validation.isValidEmailAddress(email: emailId){
             AlertController.CreateAlertMessage(title: Constant.error, message: Constant.enteredInvalidEmail, viewController: self)
+            return
         }
-
+        self.showActivityIndicator(titleMessage: Constant.isPendingMessage)
         DispatchQueue.global().async {
             
             APIManager.forgetPasswordRequestAPI(useremail: emailId, completion: { statusCode , errorMessage in
                 DispatchQueue.main.async {
                     if statusCode == 200{
+                        self.hideActivityIndicator()
                         AlertController.alertWithCompletionHandler(title: Constant.success, message: errorMessage, viewController: self) { [weak self] in
                             let moveToNextVC = self?.storyboard?.instantiateViewController(withIdentifier: "NewPasswordVC") as! NewPasswordVC
                             moveToNextVC.isHideShow = ((self?.isFieldShow) != false)
@@ -55,6 +57,7 @@ class ForgetPasswordVC: UIViewController{
                         }
 
                     }else{
+                        self.hideActivityIndicator()
                         AlertController.CreateAlertMessage(title: Constant.success, message: errorMessage, viewController: self)
                     }
                 }
