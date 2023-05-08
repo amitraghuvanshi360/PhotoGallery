@@ -14,6 +14,7 @@ enum controllerViewType: String{
     case privacy = "Privacy"
     case feedback = "Feedback"
     case rate = "Rate"
+    case callUs = "Call Us"
     case signout = "SignOut"
 }
 
@@ -39,12 +40,14 @@ class HomeViewController: BaseViewController , UIImagePickerControllerDelegate &
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden  = true
         self.setLayout()
         self.getImageAPI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.getImageAPI()
     }
     
     //    MARK: DashBoard Menu Action
@@ -88,6 +91,12 @@ extension HomeViewController: PassDataDelegate{
             let push =  self.storyboard?.instantiateViewController(withIdentifier: "ProfileDetailVC") as! ProfileDetailVC
             self.navigationController?.pushViewController(push, animated: true)
         
+        case controllerViewType.setting.rawValue:
+            let email = "dev@yopmail.com"
+            if let url = URL(string: "mailto:\(email)") {
+              UIApplication.shared.open(url)
+            }
+            
         case controllerViewType.privacy.rawValue:
             if let url = URL(string: "https://www.q-tickets.com/Content/PrivacyPolicy") {
                 UIApplication.shared.open(url)
@@ -97,7 +106,12 @@ extension HomeViewController: PassDataDelegate{
             let push =  self.storyboard?.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
             self.navigationController?.pushViewController(push, animated: true)
 
-            
+        case controllerViewType.callUs.rawValue:
+            if let url = NSURL(string: "tel://\(123456789)"), UIApplication.shared.canOpenURL(url as URL) {
+                UIApplication.shared.open(url as URL)
+                
+            }
+
         case controllerViewType.signout.rawValue:
             let push =  self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
             self.navigationController?.pushViewController(push, animated: true)
@@ -295,5 +309,3 @@ class SecondViewCell : UICollectionViewCell{
         }
     }
 }
-
-

@@ -15,8 +15,17 @@ extension UIView {
         self.layer.borderColor = ColorCode.defaultColor.cgColor
         self.layer.cornerRadius = cornerRadius
     }
+    
 }
 
+// field view border and corner setup
+extension UIView{
+    func fieldLayoutStyle(){
+        self.layer.cornerRadius = 20
+        self.layer.borderWidth  = 1
+        self.layer.borderColor = ColorCode.defaultColor.cgColor
+    }
+}
 
 extension UIImageView {
     func setImageData(urlStr: String) {

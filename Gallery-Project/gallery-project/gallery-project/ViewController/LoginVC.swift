@@ -32,7 +32,6 @@ class LoginVC: BaseViewController {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
         self.initialLayout()
-        //        APIManager.requestNativeImageUpload(image: UIImage(named: "leaf-icon")!)
     }
     
     override func viewDidAppear(_ animated: Bool) {

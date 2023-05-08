@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		02050A4A2A051FF000258632 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02050A492A051FF000258632 /* WebViewController.swift */; };
-		02050A4C2A0532B700258632 /* CustomNavigationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02050A4B2A0532B700258632 /* CustomNavigationVC.swift */; };
+		02050A4C2A0532B700258632 /* NavigationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02050A4B2A0532B700258632 /* NavigationVC.swift */; };
 		021BB88B29E7C5F7007C4965 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BB88A29E7C5F7007C4965 /* Extensions.swift */; };
 		021BB89229E825E1007C4965 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BB89129E825E1007C4965 /* HomeViewController.swift */; };
 		021D465729E3F07300CC0201 /* SignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021D465629E3F07300CC0201 /* SignupVC.swift */; };
@@ -44,6 +44,7 @@
 		0246FA5029F7DF3000D141D1 /* SetNewPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0246FA4F29F7DF3000D141D1 /* SetNewPassword.swift */; };
 		0278FEC629F27DDD00994035 /* UserRegistration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0278FEC529F27DDD00994035 /* UserRegistration.swift */; };
 		02962AB629F100F60001ADE5 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02962AB529F100F60001ADE5 /* ImageViewController.swift */; };
+		02AD5F472A091B2600CBB09D /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AD5F462A091B2600CBB09D /* ChangePasswordVC.swift */; };
 		02CC8A5F29EE98F500232A83 /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CC8A5E29EE98F500232A83 /* CountryModel.swift */; };
 		02EDC01429F6A26C006D2C20 /* ForgetPassowrd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EDC01329F6A26C006D2C20 /* ForgetPassowrd.swift */; };
 		02F9D23B29F95B1E00495A90 /* DeleteImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F9D23A29F95B1E00495A90 /* DeleteImageModel.swift */; };
@@ -71,7 +72,7 @@
 
 /* Begin PBXFileReference section */
 		02050A492A051FF000258632 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
-		02050A4B2A0532B700258632 /* CustomNavigationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationVC.swift; sourceTree = "<group>"; };
+		02050A4B2A0532B700258632 /* NavigationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationVC.swift; sourceTree = "<group>"; };
 		021BB88A29E7C5F7007C4965 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		021BB89129E825E1007C4965 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		021D465629E3F07300CC0201 /* SignupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupVC.swift; sourceTree = "<group>"; };
@@ -111,6 +112,7 @@
 		0246FA4F29F7DF3000D141D1 /* SetNewPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetNewPassword.swift; sourceTree = "<group>"; };
 		0278FEC529F27DDD00994035 /* UserRegistration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegistration.swift; sourceTree = "<group>"; };
 		02962AB529F100F60001ADE5 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
+		02AD5F462A091B2600CBB09D /* ChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordVC.swift; sourceTree = "<group>"; };
 		02CC8A5E29EE98F500232A83 /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
 		02EDC01329F6A26C006D2C20 /* ForgetPassowrd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPassowrd.swift; sourceTree = "<group>"; };
 		02F9D23A29F95B1E00495A90 /* DeleteImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteImageModel.swift; sourceTree = "<group>"; };
@@ -166,7 +168,8 @@
 				02962AB529F100F60001ADE5 /* ImageViewController.swift */,
 				023459F72A026B6800CF31B0 /* ProfileDetailVC.swift */,
 				02050A492A051FF000258632 /* WebViewController.swift */,
-				02050A4B2A0532B700258632 /* CustomNavigationVC.swift */,
+				02050A4B2A0532B700258632 /* NavigationVC.swift */,
+				02AD5F462A091B2600CBB09D /* ChangePasswordVC.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -567,7 +570,7 @@
 				0278FEC629F27DDD00994035 /* UserRegistration.swift in Sources */,
 				021D465A29E4412900CC0201 /* Constant.swift in Sources */,
 				021BB89229E825E1007C4965 /* HomeViewController.swift in Sources */,
-				02050A4C2A0532B700258632 /* CustomNavigationVC.swift in Sources */,
+				02050A4C2A0532B700258632 /* NavigationVC.swift in Sources */,
 				0246FA4E29F7B41900D141D1 /* ConfirmPassword.swift in Sources */,
 				02EDC01429F6A26C006D2C20 /* ForgetPassowrd.swift in Sources */,
 				023298A429E531C800AEFBAF /* AlertController.swift in Sources */,
@@ -588,6 +591,7 @@
 				02962AB629F100F60001ADE5 /* ImageViewController.swift in Sources */,
 				021E79D129E6DCA500F9345A /* UserModel.swift in Sources */,
 				02050A4A2A051FF000258632 /* WebViewController.swift in Sources */,
+				02AD5F472A091B2600CBB09D /* ChangePasswordVC.swift in Sources */,
 				023CAB3729DFF07500215271 /* LoginVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

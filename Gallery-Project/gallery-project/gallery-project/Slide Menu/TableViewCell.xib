@@ -35,6 +35,9 @@
                                 <state key="normal" title="    Dashboard">
                                     <color key="titleColor" name="textColour"/>
                                 </state>
+                                <connections>
+                                    <action selector="dashboardMenuSelectionAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="RgD-tg-vcc"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>

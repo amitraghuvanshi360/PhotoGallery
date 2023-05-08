@@ -45,7 +45,7 @@ class BaseViewController: UIViewController {
             self.loadingView.frame = CGRect(x: 0.0, y: 0.0, width: 300.0, height: 200.0)
             self.loadingView.center = self.view.center
             self.loadingView.backgroundColor = .black
-            self.loadingView.alpha = 1
+            self.loadingView.alpha = 0.9
             self.loadingView.clipsToBounds = true
             self.loadingView.layer.cornerRadius = 10
 

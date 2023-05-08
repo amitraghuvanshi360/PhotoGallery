@@ -16,7 +16,6 @@ class ProfileDetailVC: UIViewController {
     var userDataArray: [String] = []
     var userInfo: UserData?
     var isFieldVisible:Bool =  false
-    @IBOutlet weak var imageView: UIView!
     @IBOutlet weak var profileView: UIView!
     @IBOutlet weak var profileContainer: UIView!
     @IBOutlet weak var editProfileBttn: UIButton!
@@ -79,6 +78,7 @@ extension ProfileDetailVC{
             APIManager.getUserDetailsRequestAPI(token: token as! String, completion: { [self] userData in
                 if let unwrappeData = userData?.data{
                     self.userInfo = unwrappeData
+                    self.profileIcon.setImageData(urlStr: unwrappeData.profileImage)
                     self.userDataArray.append(unwrappeData.name)
                     self.userDataArray.append(unwrappeData.email)
                     self.userDataArray.append(unwrappeData.phoneNumber)
@@ -98,6 +98,15 @@ extension ProfileDetailVC{
     func initLayout(){
         self.profileContainer.layer.cornerRadius = 10
         self.profileContainer.backgroundColor = ColorCode.profileContainer
+        
+        
+        self.profileView.layer.cornerRadius = min(self.profileView.frame.size.height, self.profileView.frame.size.width) / 2.0
+        self.profileView.layer.borderWidth = 1
+        self.profileView.clipsToBounds = true
+        
+        self.profileIcon.layer.cornerRadius = min(self.profileView.frame.size.height, self.profileIcon.frame.size.width) / 2.0
+        self.profileIcon.layer.borderWidth = 1
+        self.profileIcon.clipsToBounds = true
     }
 } // extension body end
 

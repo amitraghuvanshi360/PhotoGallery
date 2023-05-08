@@ -10,7 +10,7 @@ import UIKit
 
 struct Constant{
     
-    static let BASE_URL = "http://192.168.1.140:5181/"
+    static let BASE_URL = "http://192.168.1.148:5181/"
     
     static let ok = "Ok"
     static let done = "Done"

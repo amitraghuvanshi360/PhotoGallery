@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0BC0D302-4FB4-4632-B0AC-3E41BD94F94C"
+            uuid = "BE615AEA-34A0-4F98-9F5A-9E03CB12B899"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "gallery-project/ViewController/ProfileDetailVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "tableView(_:numberOfRowsInSection:)"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "getUserDetails()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
