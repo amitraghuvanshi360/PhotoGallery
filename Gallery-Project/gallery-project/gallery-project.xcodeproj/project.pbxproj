@@ -42,6 +42,7 @@
 		02428B1529F8FB0000F8AE68 /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02428B1429F8FB0000F8AE68 /* ImageModel.swift */; };
 		0246FA4E29F7B41900D141D1 /* ConfirmPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0246FA4D29F7B41900D141D1 /* ConfirmPassword.swift */; };
 		0246FA5029F7DF3000D141D1 /* SetNewPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0246FA4F29F7DF3000D141D1 /* SetNewPassword.swift */; };
+		0274653E2A0A0D4B005DA027 /* PasswordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0274653D2A0A0D4B005DA027 /* PasswordModel.swift */; };
 		0278FEC629F27DDD00994035 /* UserRegistration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0278FEC529F27DDD00994035 /* UserRegistration.swift */; };
 		02962AB629F100F60001ADE5 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02962AB529F100F60001ADE5 /* ImageViewController.swift */; };
 		02AD5F472A091B2600CBB09D /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AD5F462A091B2600CBB09D /* ChangePasswordVC.swift */; };
@@ -110,6 +111,7 @@
 		02428B1429F8FB0000F8AE68 /* ImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
 		0246FA4D29F7B41900D141D1 /* ConfirmPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPassword.swift; sourceTree = "<group>"; };
 		0246FA4F29F7DF3000D141D1 /* SetNewPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetNewPassword.swift; sourceTree = "<group>"; };
+		0274653D2A0A0D4B005DA027 /* PasswordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordModel.swift; sourceTree = "<group>"; };
 		0278FEC529F27DDD00994035 /* UserRegistration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegistration.swift; sourceTree = "<group>"; };
 		02962AB529F100F60001ADE5 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		02AD5F462A091B2600CBB09D /* ChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordVC.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				02428B1429F8FB0000F8AE68 /* ImageModel.swift */,
 				02F9D23A29F95B1E00495A90 /* DeleteImageModel.swift */,
 				023459F92A02702800CF31B0 /* GetUserDetails.swift */,
+				0274653D2A0A0D4B005DA027 /* PasswordModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -582,6 +585,7 @@
 				0233522D29DEF5AB003BC72A /* AppDelegate.swift in Sources */,
 				0236632F29FFCBB000583717 /* SlideMenu.swift in Sources */,
 				0233522F29DEF5AB003BC72A /* SceneDelegate.swift in Sources */,
+				0274653E2A0A0D4B005DA027 /* PasswordModel.swift in Sources */,
 				021BB88B29E7C5F7007C4965 /* Extensions.swift in Sources */,
 				023CAB3929E0196300215271 /* ForgetPasswordVC.swift in Sources */,
 				0224263A29ED0D3600DBB653 /* Country.swift in Sources */,

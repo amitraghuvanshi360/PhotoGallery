@@ -19,6 +19,7 @@ struct APIUrls {
     static let AddImage = "api/v1/User/AddImage"
     static let DeleteImage = "api/v1/User/DeleteImage"
     static let UserDetails = "api/v1/User/userDetails"
+    static let ChangePassword = "api/v1/Authorization/ChangePassword"
 }
 
 class APIManager : NSObject {
@@ -105,7 +106,6 @@ class APIManager : NSObject {
                                           "password": password,
                                           "phoneNumber" : phoneNumber,
                                           "hobby" : hobbies
-                                          
         ]
         let headers:HTTPHeaders = [
             "Content-type": "multipart/form-data",
@@ -406,8 +406,40 @@ class APIManager : NSObject {
         }.resume()
     }
     
-
+    class func changePasswordRequestAPI(email: String ,currentPassword: String,newPassword:String,confirmPassword: String , completion: @escaping (PasswordModel) -> ()){
+        let base_url = "\(Constant.BASE_URL)\(APIUrls.ChangePassword)"
+        guard let url = URL.init(string: base_url) else {
+            return
+        }
+        var urlRequest = URLRequest(url: url)
+        
+        urlRequest.httpMethod = "POST"
+        
+        let params :[String: Any] = ["email" : email , "currentPassword": currentPassword , "newPassword" : newPassword , "confirmNewPassword": confirmPassword]
+        
+        let jsonData = try? JSONSerialization.data(withJSONObject: params)
+        urlRequest.httpBody = jsonData
+        
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        let task = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
+            if  let errors = error{
+                print(errors.localizedDescription)
+            }
+            
+            guard let data = data, error == nil else {
+                print(error?.localizedDescription ?? "No data")
+                return
+            }
+            
+            let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any]
+            
+            if let dataObj = try? JSONDecoder().decode(PasswordModel.self, from: data ) {
+                print(dataObj)
+                completion(dataObj)
+            }
+        }.resume()
+    }
 }
-
-
 

@@ -18,8 +18,8 @@ class SlideMenu: UIView{
     }
     var delegate: PassDataDelegate?
 //    MARK: Outlets and variable declaration
-    var menuItemsData = ["Account Details" , "Settings" , "Privacy", "Feedback" , "Rate" ,"Call Us" , "SignOut"]
-    var menuItemIcon = [UIImage(named: "dashboard"), UIImage(named: "settings") , UIImage(named: "settings"),UIImage(named: "settings"), UIImage(named: "rate-us"),UIImage(named: "rate-us") , UIImage(named: "sign-out")]
+    var menuItemsData = ["Account Details" , "Change Password" , "Privacy", "Feedback" , "Rate" ,"Call Us" , "SignOut"]
+    var menuItemIcon = [UIImage(named: "dashboard"), UIImage(named: "settings") , UIImage(named: "settings"),UIImage(named: "settings"), UIImage(named: "rate-us"),UIImage(named: "contact") , UIImage(named: "sign-out")]
     @IBOutlet var rootView: UIView!
     @IBOutlet private weak var profileView: UIView!
     @IBOutlet private weak var profileIcon: UIImageView!

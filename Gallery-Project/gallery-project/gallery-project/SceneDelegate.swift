@@ -16,13 +16,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScence = (scene as? UIWindowScene) else { return }
         let windowsc = UIWindow.init(windowScene: windowScence)
         
-        let userId = UserDefaults.standard.object(forKey: "token")
-        if userId != nil {
+        let token = UserDefaults.standard.object(forKey: "token")
+        if token != nil {
             let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let mainViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController")
             let navController = NavigationVC(rootViewController: mainViewController)
             windowsc.rootViewController = navController
-
         }
         else {
             let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)

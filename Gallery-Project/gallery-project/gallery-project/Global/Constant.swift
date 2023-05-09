@@ -11,12 +11,12 @@ import UIKit
 struct Constant{
     
     static let BASE_URL = "http://192.168.1.148:5181/"
-    
     static let ok = "Ok"
     static let done = "Done"
     static let error = "Error"
     static let success = "Success"
     static let warnings = "Warning"
+    static let failure = "Failure"
     static let enterName = "Please enter your name"
     static let isEnteredName = "You haven't entered name"
     static let isNameShort = "Entered name should contain atleast 3 characters"
@@ -37,9 +37,12 @@ struct Constant{
     static let isGenderSelected = "Please select your gender"
     static let isOtpNull = "OTP field are nil please enter valid otp"
     static let optResendMessage = "OTP resend to your email please enter valid otp"
-    static let isImageUploading = "Please wait while we uploading you image..."
+    static let isImageUploading = "Please wait while we uploading you images..."
     static let isPendingMessage = "Please wait...!!!"
     static let isSignupLoading = "Please wait while we are sending your data"
+    static let isPasswordChanged = "Your password has been changed successfully"
+    static let isPasswordNotChanged = "Failed to change password"
+    static let isInvalid = "Something went wrong"
 }
 
 
