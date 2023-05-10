@@ -16,7 +16,6 @@ class ProfileDetailVC: UIViewController {
     var userDataArray: [String] = []
     var userInfo: UserData?
     var isFieldVisible:Bool =  false
-    
     @IBOutlet private weak var profileView: UIView!
     @IBOutlet private weak var profileContainer: UIView!
     @IBOutlet private weak var editProfileBttn: UIButton!

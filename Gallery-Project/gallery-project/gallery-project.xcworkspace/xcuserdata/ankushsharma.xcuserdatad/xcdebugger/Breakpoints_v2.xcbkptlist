@@ -7,96 +7,80 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "772B47C0-46CC-4E52-A6D4-55C38D375381"
+            uuid = "1E8AAC4D-90DA-4348-892D-FEFE806A33AC"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "gallery-project/APIManager/APIRequest.swift"
+            filePath = "gallery-project/Utility/Extensions.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "436"
-            endingLineNumber = "436"
-            landmarkName = "changePasswordRequestAPI(email:currentPassword:newPassword:confirmPassword:completion:)"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "setImageData(urlStr:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "1E8AAC4D-90DA-4348-892D-FEFE806A33AC - 5af3ddfc9eba291c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 () -&gt; () in __C.UIImageView.setImageData(urlStr: Swift.String) -&gt; ()"
+                  moduleName = "gallery-project"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ankushsharma/Desktop/PhotoGallery/Gallery-Project/gallery-project/gallery-project/Utility/Extensions.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "38"
+                  endingLineNumber = "38"
+                  offsetFromSymbolStart = "375">
+               </Location>
+               <Location
+                  uuid = "1E8AAC4D-90DA-4348-892D-FEFE806A33AC - 5af3ddfc9eba291c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 () -&gt; () in __C.UIImageView.setImageData(urlStr: Swift.String) -&gt; ()"
+                  moduleName = "gallery-project"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ankushsharma/Desktop/PhotoGallery/Gallery-Project/gallery-project/gallery-project/Utility/Extensions.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "38"
+                  endingLineNumber = "38"
+                  offsetFromSymbolStart = "674">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "328F1077-172E-446E-950C-0422E0E92FF2"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "gallery-project/APIManager/APIRequest.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "437"
-            endingLineNumber = "437"
-            landmarkName = "changePasswordRequestAPI(email:currentPassword:newPassword:confirmPassword:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "4CB429AB-0B55-4BF7-8FF5-96785322C38A"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "gallery-project/ViewController/ChangePasswordVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "changePasswordAction(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "7F776EA5-0FD9-4953-B1F0-FEA68B6FFB4D"
+            uuid = "FA02E3F2-7D9E-4A45-BC36-6D834C390994"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "gallery-project/ViewController/HomeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
-            landmarkName = "sendData(indexPath:)"
+            startingLineNumber = "233"
+            endingLineNumber = "233"
+            landmarkName = "collectionView(_:didSelectItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "53E36DC5-D029-464E-930C-A665898F834E"
+            uuid = "07AFB503-86DE-4B19-99BA-F6B0DE7A36CB"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "gallery-project/ViewController/HomeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
-            landmarkName = "sendData(indexPath:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "1860F04C-6F2E-44CC-A933-3DB9E47AE905"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "gallery-project/ViewController/ChangePasswordVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
-            landmarkName = "changePasswordAPI(email:currentPassword:newPassword:confirmPassword:)"
+            startingLineNumber = "236"
+            endingLineNumber = "236"
+            landmarkName = "collectionView(_:didSelectItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

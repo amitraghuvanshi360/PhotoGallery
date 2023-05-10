@@ -33,6 +33,7 @@ class SlideMenu: UIView{
     required init?(coder aDecoder: NSCoder) {
        super.init(coder: aDecoder)
         commonInit()
+        self.getUserDetails()
     }
     
 //   MARK: Initialization view and layout setup
@@ -84,6 +85,25 @@ extension SlideMenu: UITableViewDataSource, UITableViewDelegate,CellPassDataDele
         return 75.0
     }
     
+}
+
+extension SlideMenu{
+    
+    //   MARK: Get user details API
+    func getUserDetails(){
+        let token = UserDefaults.standard.object(forKey: "token")
+        DispatchQueue.global().async {
+            APIManager.getUserDetailsRequestAPI(token: token as! String, completion: { [self] userData in
+                guard let unwrappeData = userData?.data else {
+                    return
+                }
+                self.profileIcon.setImageData(urlStr: unwrappeData.profileImage)
+                DispatchQueue.main.async {
+                    self.emailLbl.text = unwrappeData.email
+                }
+            })
+        }
+    }
 }
 
 protocol CellPassDataDelegate {

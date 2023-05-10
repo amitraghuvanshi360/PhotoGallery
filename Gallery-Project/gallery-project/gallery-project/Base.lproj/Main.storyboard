@@ -1619,6 +1619,7 @@
                     <connections>
                         <outlet property="assertBgView" destination="HWN-9N-dzY" id="q5y-Hg-3dK"/>
                         <outlet property="firstCollectionView" destination="nBZ-SQ-NZg" id="GCt-kO-X5k"/>
+                        <outlet property="menuBttn" destination="VM2-Qc-ILu" id="2pT-rE-UJn"/>
                         <outlet property="scrollView" destination="jqX-Nr-Li2" id="6dl-5S-NvB"/>
                         <outlet property="secondCollectionView" destination="ZA3-OL-A8o" id="rXd-3a-TXM"/>
                         <outlet property="slideMenuView" destination="io5-SH-6mC" id="Rea-DW-ZVt"/>
@@ -1639,13 +1640,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I2f-Tx-pEn">
-                                <rect key="frame" x="0.0" y="94" width="390" height="666"/>
+                                <rect key="frame" x="0.0" y="94" width="390" height="716"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wLK-hn-ll9">
-                                        <rect key="frame" x="0.0" y="0.0" width="390" height="576"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="390" height="626"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iCS-Vo-X7m">
-                                        <rect key="frame" x="58.666666666666657" y="596" width="273" height="50"/>
+                                        <rect key="frame" x="58.666666666666657" y="646" width="273" height="50"/>
                                         <color key="backgroundColor" name="primaryColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="f1a-Zl-5Qr"/>
@@ -1706,7 +1707,7 @@
                             <constraint firstItem="w2R-mW-OCp" firstAttribute="centerY" secondItem="JiJ-Y0-QKm" secondAttribute="centerY" id="8hW-wQ-X7Q"/>
                             <constraint firstItem="w2R-mW-OCp" firstAttribute="height" secondItem="JiJ-Y0-QKm" secondAttribute="height" id="E9o-T5-Eah"/>
                             <constraint firstItem="w2R-mW-OCp" firstAttribute="leading" secondItem="lWo-R9-Obc" secondAttribute="leading" id="JUz-xU-xbm"/>
-                            <constraint firstItem="lWo-R9-Obc" firstAttribute="bottom" secondItem="I2f-Tx-pEn" secondAttribute="bottom" constant="50" id="RGy-oq-muP"/>
+                            <constraint firstItem="lWo-R9-Obc" firstAttribute="bottom" secondItem="I2f-Tx-pEn" secondAttribute="bottom" id="RGy-oq-muP"/>
                             <constraint firstItem="I2f-Tx-pEn" firstAttribute="leading" secondItem="lWo-R9-Obc" secondAttribute="leading" id="UzU-Lc-NAD"/>
                             <constraint firstItem="w2R-mW-OCp" firstAttribute="top" secondItem="lWo-R9-Obc" secondAttribute="top" id="fgZ-od-K5b"/>
                             <constraint firstItem="JiJ-Y0-QKm" firstAttribute="centerX" secondItem="Awt-lE-l2t" secondAttribute="centerX" id="y7w-nO-S47"/>
@@ -2067,7 +2068,7 @@
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="leading" contentVerticalAlignment="center" placeholder="Enter your email address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rxG-Nx-hDx">
                                                                 <rect key="frame" x="20" y="0.0" width="314" height="45"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES"/>
+                                                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                                             </textField>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -2114,7 +2115,7 @@
                                                             <textField opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="leading" contentVerticalAlignment="center" placeholder="Enter your new password again" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mYS-w4-giQ">
                                                                 <rect key="frame" x="20" y="0.0" width="314" height="45"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
+                                                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                             </textField>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -2137,7 +2138,7 @@
                                                             <textField opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="leading" contentVerticalAlignment="center" placeholder="Enter your password again" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zSv-ZF-rfz">
                                                                 <rect key="frame" x="20" y="0.0" width="262" height="45"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
+                                                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                             </textField>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tq8-LZ-tN2">
                                                                 <rect key="frame" x="282" y="0.0" width="52" height="45"/>

@@ -38,11 +38,15 @@ extension UIImageView {
                         let image = UIImage(data: unwappedData)
                         self.image = image
                         self.contentMode = .scaleAspectFill
-                    }else{
-                        self.image = UIImage(named: "null-data")
                     }
                 }
             }
         }
     }
 }
+
+//if url?.path.contains("ce2a3835-9d77-4dbc-837b-c6e249b953f4"){
+//    let img = UIImage(named: "null-data")
+//
+//}
+//
