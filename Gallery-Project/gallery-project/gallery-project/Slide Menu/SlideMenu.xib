@@ -3,7 +3,6 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -27,10 +26,10 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rx4-QV-PCC">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="269"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="304.5"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RHq-gu-Fob">
-                                    <rect key="frame" x="142.5" y="70" width="129" height="129"/>
+                                    <rect key="frame" x="142.5" y="88" width="129" height="129"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="girl-profile" translatesAutoresizingMaskIntoConstraints="NO" id="WX9-yb-V8v">
                                             <rect key="frame" x="0.0" y="0.0" width="129" height="129"/>
@@ -47,13 +46,13 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="asraghuvanshi@360gmail.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HaP-85-Ree">
-                                    <rect key="frame" x="68.5" y="219" width="277.5" height="21.5"/>
+                                    <rect key="frame" x="68.5" y="237" width="277.5" height="21.5"/>
                                     <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
-                                    <color key="textColor" name="accentColor"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" name="primaryColor"/>
+                            <color key="backgroundColor" red="0.054901960784313725" green="0.13333333333333333" blue="0.082352941176470587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstItem="RHq-gu-Fob" firstAttribute="centerY" secondItem="Rx4-QV-PCC" secondAttribute="centerY" id="Co8-rf-cGW"/>
                                 <constraint firstItem="HaP-85-Ree" firstAttribute="centerX" secondItem="RHq-gu-Fob" secondAttribute="centerX" id="O4u-Jz-Pye"/>
@@ -62,7 +61,7 @@
                             </constraints>
                         </view>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="RKk-mk-WNm">
-                            <rect key="frame" x="0.0" y="269" width="414" height="627"/>
+                            <rect key="frame" x="0.0" y="304.5" width="414" height="591.5"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </tableView>
                     </subviews>
@@ -74,7 +73,7 @@
                         <constraint firstItem="Rx4-QV-PCC" firstAttribute="top" secondItem="d3U-Q1-oeg" secondAttribute="top" id="Ulr-Ha-ND7"/>
                         <constraint firstItem="RKk-mk-WNm" firstAttribute="trailing" secondItem="Rx4-QV-PCC" secondAttribute="trailing" id="cbB-Za-Kxf"/>
                         <constraint firstItem="Rx4-QV-PCC" firstAttribute="leading" secondItem="d3U-Q1-oeg" secondAttribute="leading" id="fSD-ar-ZCv"/>
-                        <constraint firstItem="Rx4-QV-PCC" firstAttribute="height" secondItem="d3U-Q1-oeg" secondAttribute="height" multiplier="0.3" id="gid-2C-cFd"/>
+                        <constraint firstItem="Rx4-QV-PCC" firstAttribute="height" secondItem="d3U-Q1-oeg" secondAttribute="height" multiplier="0.34" id="gid-2C-cFd"/>
                         <constraint firstItem="RKk-mk-WNm" firstAttribute="leading" secondItem="Rx4-QV-PCC" secondAttribute="leading" id="jnI-1p-99G"/>
                     </constraints>
                 </view>
@@ -91,12 +90,6 @@
     </objects>
     <resources>
         <image name="girl-profile" width="800" height="534"/>
-        <namedColor name="accentColor">
-            <color red="0.059000000357627869" green="0.082000002264976501" blue="0.16500000655651093" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="primaryColor">
-            <color red="0.59200000762939453" green="0.97600001096725464" blue="0.44299998879432678" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

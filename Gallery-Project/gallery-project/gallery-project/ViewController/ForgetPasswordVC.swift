@@ -52,10 +52,10 @@ class ForgetPasswordVC: BaseViewController{
                         AlertController.alertWithCompletionHandler(title: Constant.success, message: errorMessage, viewController: self) { [weak self] in
                             let moveToNextVC = self?.storyboard?.instantiateViewController(withIdentifier: "NewPasswordVC") as! NewPasswordVC
                             moveToNextVC.isHideShow = ((self?.isFieldShow) != false)
-                        moveToNextVC.emailAddress = emailId
+                            moveToNextVC.emailAddress = emailId
                             self?.navigationController?.pushViewController(moveToNextVC, animated: true)
                         }
-
+                        
                     }else{
                         self.hideActivityIndicator()
                         AlertController.CreateAlertMessage(title: Constant.success, message: errorMessage, viewController: self)

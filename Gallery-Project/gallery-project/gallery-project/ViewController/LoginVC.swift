@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import GoogleSignIn
 
 protocol ValidationProtocol {
     func validateEmail()
@@ -16,7 +17,7 @@ protocol ValidationProtocol {
 class LoginVC: BaseViewController {
     
     var isFieldShow: Bool = true
-    //    MARK: - IBOutlets
+    //    MARK: - IBOutlets and variable declaration
     @IBOutlet private weak var emailTextField: UITextField!
     @IBOutlet private weak var passwordTextField: UITextField!
     @IBOutlet private weak var continueButton: UIButton!
@@ -25,7 +26,8 @@ class LoginVC: BaseViewController {
     @IBOutlet private weak var passwordView: UIView!
     @IBOutlet private weak var signupButton: UIButton!
     
-    @IBOutlet weak var forgetpasswordBtton: UIButton!
+    @IBOutlet private weak var loginWithGoogleBttn: UIButton!
+    @IBOutlet private weak var forgetpasswordBtton: UIButton!
     
     //MARK: - View life cycle methods
     override func viewDidLoad() {
@@ -62,20 +64,34 @@ class LoginVC: BaseViewController {
         
         let userEmail = self.emailTextField.text!
         let userPassword = self.passwordTextField.text!
-        
         let error = Validation.validateInputData(useremail: userEmail , userpassword: userPassword)
         if !error.isEmpty{
             AlertController.CreateAlertMessage(title: Constant.error, message: error, viewController: self)
             return
         }
-
+        
         self.showActivityIndicator(titleMessage: Constant.isPendingMessage)
         self.validateUserdetailsAPI(useremail: userEmail, password: userPassword)
     }
+    
+    @IBAction func loginWithGoogleAction(_ sender: Any) {
+        GIDSignIn.sharedInstance()?.presentingViewController = self
+        GIDSignIn.sharedInstance()?.restorePreviousSignIn()
+        GIDSignIn.sharedInstance().delegate = self
+        let user = GIDSignIn.sharedInstance().currentUser
+        let profileUrl = user?.profile.imageURL(withDimension: 150)?.absoluteString ?? ""
+        
+        if ((user?.userID.isEmpty) != nil){
+            self.setUserDefaultsData(email: (user?.profile.email)!, expiration: "", token: (user?.authentication.accessToken)!)
+        }
+        GIDSignIn.sharedInstance().signIn()
+        
+    }
+    
 }
 
 
-//    MARK: Layout styling
+//    MARK: Layout styling and initialization
 extension LoginVC{
     
     //    MARK: Set initial layout
@@ -120,7 +136,7 @@ extension LoginVC{
 
 
 extension LoginVC {
-//    save data in user default
+    //    save data in user default
     func setUserDefaultsData(email: String , expiration: String , token: String){
         UserDefaults.standard.set(email as String, forKey: "useremail")
         UserDefaults.standard.set(token, forKey: "token")
@@ -129,6 +145,7 @@ extension LoginVC {
         UserDefaults.standard.object(forKey: "token")
     }
     
+    // API for validating user details email and password while doing login
     func validateUserdetailsAPI(useremail: String, password: String){
         DispatchQueue.global().async {
             APIManager.LoginRequestAPI(useremail: useremail, userpassword: password){ userModelData, errorMessage  in
@@ -161,5 +178,26 @@ extension LoginVC {
                 }
             }
         }
+    }
+}
+
+
+extension LoginVC: GIDSignInDelegate{
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        let homeVc = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+        
+        if let error = error {
+            if (error as NSError).code == GIDSignInErrorCode.hasNoAuthInKeychain.rawValue {
+                print("The user has not signed in before or they have since signed out.")
+            } else {
+                print("\(error.localizedDescription)")
+            }
+            return
+        }
+        
+        if !user.profile.email.isEmpty{
+            print(user.profile.email)
+        }
+        self.navigationController?.pushViewController(homeVc, animated: true)
     }
 }

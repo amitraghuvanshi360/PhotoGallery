@@ -12,7 +12,7 @@ import Foundation
 struct ImageModel: Codable {
     let statusCode: Int
     let message: String
-    let data: [Datum]
+    let data: [Datum]?
 }
 
 // MARK: - Datum

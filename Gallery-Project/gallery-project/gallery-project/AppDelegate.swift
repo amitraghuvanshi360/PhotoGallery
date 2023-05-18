@@ -7,7 +7,8 @@
 
 import UIKit
 import IQKeyboardManagerSwift
-
+import FirebaseCore
+import GoogleSignIn
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
@@ -16,7 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions:
     [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         IQKeyboardManager.shared.enable = true
-        let token =  UserDefaults.standard.object(forKey: "token")
+        UserDefaults.standard.object(forKey: "token")
+        
+        FirebaseApp.configure()
+        GIDSignIn.sharedInstance().clientID = "473403994032-l213bldfqnp4k77muqkligbi59hi260d.apps.googleusercontent.com"
         return true
     }
 

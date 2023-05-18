@@ -22,13 +22,13 @@ class BaseViewController: UIViewController {
     
     func hideKeyboardOnTap() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-            tap.cancelsTouchesInView = false
-            view.addGestureRecognizer(tap)
-        }
-        
-        @objc func dismissKeyboard() {
-            view.endEditing(true)
-        }
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
     
     func showActivityIndicator(titleMessage: String) {
         DispatchQueue.main.async {
@@ -48,11 +48,11 @@ class BaseViewController: UIViewController {
             self.loadingView.alpha = 0.9
             self.loadingView.clipsToBounds = true
             self.loadingView.layer.cornerRadius = 10
-
+            
             self.spinner = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.whiteLarge)
             self.spinner.frame = CGRect(x: 0.0, y: 0.0, width: 80.0, height: 80.0)
             self.spinner.center = self.view.center
-
+            
             
             self.labl.frame = CGRect(x: self.loadingView.frame.origin.x , y: self.loadingView.frame.origin.y + 20, width:  self.loadingView.frame.width, height: 70.0)
             self.labl.numberOfLines = 2
@@ -72,9 +72,9 @@ class BaseViewController: UIViewController {
             self.view.bringSubviewToFront(self.spinner)
             self.spinner.startAnimating()
         }
-         
+        
     }
-
+    
     func hideActivityIndicator() {
         DispatchQueue.main.async {
             self.spinner.stopAnimating()
@@ -86,21 +86,21 @@ class BaseViewController: UIViewController {
     }
     
     func customView(){
-//        menu.frame = CGRect(x: 0, y: 0, width: ConstantHeight.screenWidth, height: ConstantHeight.screenHeight)
-//        self.view.addSubview(menu)
-//        self.menu.alpha = 0.5
-//        self.view.bringSubviewToFront(menu)
-//        self.menu.clipsToBounds = true
+        //        menu.frame = CGRect(x: 0, y: 0, width: ConstantHeight.screenWidth, height: ConstantHeight.screenHeight)
+        //        self.view.addSubview(menu)
+        //        self.menu.alpha = 0.5
+        //        self.view.bringSubviewToFront(menu)
+        //        self.menu.clipsToBounds = true
     }
 }
 
 extension BaseViewController : UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let nextField = self.view.viewWithTag(textField.tag + 1)  {
-                   nextField.becomeFirstResponder()
-               } else {
-                   textField.resignFirstResponder()
-               }
+            nextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
         return true
     }
     

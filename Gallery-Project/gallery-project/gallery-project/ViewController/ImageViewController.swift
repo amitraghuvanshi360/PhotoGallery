@@ -54,17 +54,6 @@ extension ImageViewController {
 
 
 extension ImageViewController {
-    func getImageAPI(){
-        let token =  UserDefaults.standard.object(forKey: "token")
-        
-        DispatchQueue.global().async {
-            APIManager.getImageRequestAPI(token: token as! String, completion: { completeData in
-                
-            })
-        }
-    }
-    
-    
     func deleteImageAPI(authToken: String){
         DispatchQueue.global().async { [self] in
             APIManager.deleteImageRequestAPI(token: authToken as! String, imageId: imageId, completion: { [self] statusCode , message in

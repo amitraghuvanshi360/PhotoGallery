@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class NewPasswordVC: BaseViewController{
-//  MARK:  Global variables
+    //  MARK:  Global variables
     
     var isHideShow:Bool = false
     var emailAddress:String = ""
@@ -40,7 +40,7 @@ class NewPasswordVC: BaseViewController{
         self.checkFieldShouldHideOrShow()
         self.initLayout()
         self.addTargetForTextField()
-       
+        
     }
     //MARK: back to previous activity
     @IBAction func backActionButton(_ sender: UIButton) {
@@ -86,7 +86,7 @@ class NewPasswordVC: BaseViewController{
         self.createNewPassword(useremail: emailAddress, newpassword: newpassword, confirmpassword: confirmpassword, otp: enteredOTP)
         
     }
-//    MARK: Verify otp button Action
+    //    MARK: Verify otp button Action
     @IBAction func verifyOTPAction(_ sender: Any) {
         let otp1 = self.otpIndex1.text
         let otp2 = self.otpIndex2.text
@@ -180,7 +180,7 @@ extension NewPasswordVC{
         self.otpFieldLayout(textField: otpIndex4)
         self.otpFieldLayout(textField: otpIndex5)
         self.otpFieldLayout(textField: otpIndex6)
-
+        
         let yourAttributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.systemFont(ofSize: 17, weight: .bold),
             .foregroundColor: UIColor.black,
@@ -193,7 +193,7 @@ extension NewPasswordVC{
         self.resendOtpButton.setAttributedTitle(attributeString, for: .normal)
         
     } // function end
- 
+    
     //   MARK: otp textfield target action to move next fields
     func addTargetForTextField(){
         otpIndex1.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: UIControl.Event.editingChanged)
@@ -220,28 +220,28 @@ extension NewPasswordVC{
     // checking for max length otp field
     @objc func textFieldDidChange(textField: UITextField){
         var text = textField.text
-            if  text?.count == 1 {
-                switch textField{
-                case otpIndex1:
-                    otpIndex2.becomeFirstResponder()
-                case otpIndex2:
-                    otpIndex3.becomeFirstResponder()
-                case otpIndex3:
-                    otpIndex4.becomeFirstResponder()
-                case otpIndex4:
-                    otpIndex5.becomeFirstResponder()
-                case otpIndex5:
-                    otpIndex6.becomeFirstResponder()
-                case otpIndex6:
-                    otpIndex6.resignFirstResponder()
-                default:
-                    break
-                }
+        if  text?.count == 1 {
+            switch textField{
+            case otpIndex1:
+                otpIndex2.becomeFirstResponder()
+            case otpIndex2:
+                otpIndex3.becomeFirstResponder()
+            case otpIndex3:
+                otpIndex4.becomeFirstResponder()
+            case otpIndex4:
+                otpIndex5.becomeFirstResponder()
+            case otpIndex5:
+                otpIndex6.becomeFirstResponder()
+            case otpIndex6:
+                otpIndex6.resignFirstResponder()
+            default:
+                break
             }
+        }
         if text?.count ?? 1 > 1{
             textField.text = ""
         }
-        }
+    }
     
 } // extension end
 
@@ -265,12 +265,12 @@ extension NewPasswordVC{
         view.layer.cornerRadius = 25
         view.layer.borderColor = ColorCode.defaultColor.cgColor
     }
-   
+    
     //    setup button styling
     func setButtonLayout(button: UIButton){
         button.layer.cornerRadius = 25
     }
-   
+    
     //   setup textfield styling
     func otpFieldLayout(textField: UITextField){
         textField.layer.borderWidth = 1

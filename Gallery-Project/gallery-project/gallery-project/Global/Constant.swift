@@ -8,8 +8,12 @@
 import Foundation
 import UIKit
 
+class New {
+    class func NewAPI<T: Decodable>(useremail: String, userpassword: String , completion: @escaping ((Result<T, Error>) -> Void) )  {
+    }
+}
+
 struct Constant{
-    
     static let BASE_URL = "http://192.168.1.148:5181/"
     static let ok = "Ok"
     static let done = "Done"
@@ -37,18 +41,15 @@ struct Constant{
     static let isGenderSelected = "Please select your gender"
     static let isOtpNull = "OTP field are nil please enter valid otp"
     static let optResendMessage = "OTP resend to your email please enter valid otp"
-    static let isImageUploading = "Please wait while we uploading you images..."
-    static let isPendingMessage = "Please wait...!!!"
+    static let isImageUploading = "Please wait while we uploading your images..."
+    static let isPendingMessage = "Please wait while we are validating your data...!!!"
     static let isSignupLoading = "Please wait while we are sending your data"
+    static let isDeletePending = "Please wait while we are deleting your data"
     static let isPasswordChanged = "Your password has been changed successfully"
+    static let passwordChangeRequest = "Please wait while your password is updating"
     static let isPasswordNotChanged = "Failed to change password"
     static let isInvalid = "Something went wrong"
 }
-
-
-//customLoading.loadingImageView.rotate()
-//self.customLoading.loadingImageView.imageSlideToNext()
-//
 
 struct ConstantHeight {
     

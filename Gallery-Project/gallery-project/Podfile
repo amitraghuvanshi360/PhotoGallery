@@ -4,19 +4,21 @@
 target 'gallery-project' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-
+  
   # Pods for gallery-project
   pod 'IQKeyboardManagerSwift'
   pod "iOSDropDown"
   pod 'Alamofire', '~> 4.7'
-
+  pod 'GoogleSignIn', '~> 5.0'
+  pod 'FirebaseCore'
+  
   target 'gallery-projectTests' do
     inherit! :search_paths
     # Pods for testing
   end
-
+  
   target 'gallery-projectUITests' do
     # Pods for testing
   end
-
+  
 end

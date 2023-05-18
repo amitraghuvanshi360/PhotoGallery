@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4nt-zG-eY4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ftQ-B5-30s">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -20,7 +20,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fl2-ZV-V2X">
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="422"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="accentColor"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3a1-TW-z8z">
                                 <rect key="frame" x="135" y="362" width="120" height="120"/>
@@ -174,7 +174,7 @@
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="waF-Bl-FER">
-                                                <rect key="frame" x="30" y="280" width="354" height="350.33333333333326"/>
+                                                <rect key="frame" x="30" y="280" width="354" height="410.33333333333326"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xag-se-Fyc">
                                                         <rect key="frame" x="0.0" y="0.0" width="354" height="25"/>
@@ -289,11 +289,23 @@
                                                             <action selector="moveToSignup:" destination="ftQ-B5-30s" eventType="touchUpInside" id="xJo-Iz-ZzZ"/>
                                                         </connections>
                                                     </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QgW-PT-Jci">
+                                                        <rect key="frame" x="0.0" y="365.33333333333337" width="354" height="45"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="16"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="   Continue with Google" image="google">
+                                                            <color key="titleColor" name="textColour"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="loginWithGoogleAction:" destination="ftQ-B5-30s" eventType="touchUpInside" id="VSN-Ch-N8N"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="Tzv-pU-qz1" secondAttribute="trailing" id="6gw-Fy-tje"/>
                                                     <constraint firstAttribute="trailing" secondItem="Rvn-S0-kBR" secondAttribute="trailing" id="A1D-L8-EtW"/>
                                                     <constraint firstItem="Rvn-S0-kBR" firstAttribute="top" secondItem="dnJ-WG-VvM" secondAttribute="bottom" constant="15" id="Dm2-zX-mTd"/>
+                                                    <constraint firstItem="QgW-PT-Jci" firstAttribute="height" secondItem="2CF-DV-shL" secondAttribute="height" id="FGI-Xv-4oW"/>
                                                     <constraint firstAttribute="trailing" secondItem="Tzv-pU-qz1" secondAttribute="trailing" id="bAa-CQ-Fo6"/>
                                                     <constraint firstItem="xag-se-Fyc" firstAttribute="leading" secondItem="waF-Bl-FER" secondAttribute="leading" id="d2c-3z-07r"/>
                                                     <constraint firstItem="Rvn-S0-kBR" firstAttribute="leading" secondItem="waF-Bl-FER" secondAttribute="leading" id="fqm-JM-1oW"/>
@@ -350,6 +362,7 @@
                         <outlet property="emailView" destination="BEr-eB-OLp" id="YYX-tJ-Eee"/>
                         <outlet property="eyeButton" destination="lEY-GG-iRK" id="p1N-AE-Ah2"/>
                         <outlet property="forgetpasswordBtton" destination="Rvn-S0-kBR" id="5Ac-df-Hsj"/>
+                        <outlet property="loginWithGoogleBttn" destination="QgW-PT-Jci" id="jkR-4w-icf"/>
                         <outlet property="passwordTextField" destination="2h2-Dm-JwP" id="3tS-eQ-z0U"/>
                         <outlet property="passwordView" destination="dnJ-WG-VvM" id="t8A-nJ-0zo"/>
                         <outlet property="signupButton" destination="2CF-DV-shL" id="r8l-a4-hiR"/>
@@ -1378,14 +1391,18 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YvD-Rz-Q9D" userLabel="Header view">
                                 <rect key="frame" x="0.0" y="44" width="414" height="70"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VM2-Qc-ILu">
-                                        <rect key="frame" x="0.0" y="12" width="69" height="46"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VM2-Qc-ILu">
+                                        <rect key="frame" x="12" y="20" width="30" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="46" id="uab-yq-y2Q"/>
+                                            <constraint firstAttribute="width" constant="30" id="il4-yc-XVw"/>
+                                            <constraint firstAttribute="height" constant="30" id="uab-yq-y2Q"/>
                                         </constraints>
                                         <color key="tintColor" name="primaryColor"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="menu-select"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="list-icon">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="dashboardAction:" destination="Nhv-md-DwK" eventType="touchUpInside" id="g3c-nL-qOa"/>
                                         </connections>
@@ -1442,7 +1459,7 @@
                                     <constraint firstItem="VM2-Qc-ILu" firstAttribute="centerY" secondItem="YvD-Rz-Q9D" secondAttribute="centerY" id="XLT-d8-AQO"/>
                                     <constraint firstAttribute="trailing" secondItem="LDv-SM-ZMo" secondAttribute="trailing" constant="10" id="YcX-fJ-Fnh"/>
                                     <constraint firstItem="Bfe-kB-IZw" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="VM2-Qc-ILu" secondAttribute="trailing" constant="10" id="ZJ8-h1-wF6"/>
-                                    <constraint firstItem="VM2-Qc-ILu" firstAttribute="leading" secondItem="YvD-Rz-Q9D" secondAttribute="leading" id="hbU-GO-dNq"/>
+                                    <constraint firstItem="VM2-Qc-ILu" firstAttribute="leading" secondItem="YvD-Rz-Q9D" secondAttribute="leading" constant="12" id="hbU-GO-dNq"/>
                                     <constraint firstAttribute="height" constant="70" id="tEh-Gw-3JE"/>
                                 </constraints>
                             </view>
@@ -1533,7 +1550,7 @@
                                                                             <state key="normal" title="Button"/>
                                                                             <buttonConfiguration key="configuration" style="plain" image="delete (1)"/>
                                                                             <connections>
-                                                                                <action selector="deleteImageAction:" destination="Nhv-md-DwK" eventType="touchUpInside" id="WtQ-XL-c8e"/>
+                                                                                <action selector="deleteButtonAction:" destination="lJj-Hv-XLd" eventType="touchUpInside" id="1Yq-dd-5dr"/>
                                                                             </connections>
                                                                         </button>
                                                                     </subviews>
@@ -1559,6 +1576,7 @@
                                                         </collectionViewCellContentView>
                                                         <size key="customSize" width="190" height="216"/>
                                                         <connections>
+                                                            <outlet property="deleteBttn" destination="UNd-WF-NeY" id="7C6-kp-kHI"/>
                                                             <outlet property="secondImageVw" destination="tyC-rC-Cxz" id="V5m-eY-KFf"/>
                                                         </connections>
                                                     </collectionViewCell>
@@ -1595,13 +1613,13 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="ysO-h7-2B2"/>
                             </scrollView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="io5-SH-6mC" customClass="SlideMenu" customModule="gallery_project" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="118" width="364.33333333333331" height="778"/>
+                                <rect key="frame" x="0.0" y="0.0" width="364.33333333333331" height="896"/>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="KZk-gF-cyy"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="io5-SH-6mC" firstAttribute="top" secondItem="jqX-Nr-Li2" secondAttribute="top" id="3pN-yx-QQ3"/>
+                            <constraint firstItem="io5-SH-6mC" firstAttribute="top" secondItem="KP7-Rn-2bU" secondAttribute="top" id="3pN-yx-QQ3"/>
                             <constraint firstItem="io5-SH-6mC" firstAttribute="width" secondItem="YvD-Rz-Q9D" secondAttribute="width" multiplier="0.88" id="JU7-Lj-cAD"/>
                             <constraint firstAttribute="bottom" secondItem="io5-SH-6mC" secondAttribute="bottom" id="Kq8-5x-TbK"/>
                             <constraint firstItem="io5-SH-6mC" firstAttribute="leading" secondItem="jqX-Nr-Li2" secondAttribute="leading" id="Kwt-Tu-JzN"/>
@@ -1785,7 +1803,7 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" name="primaryColor"/>
+                                        <color key="backgroundColor" red="0.054901960784313725" green="0.13333333333333333" blue="0.082352941176470587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="0fF-rv-Sb5" firstAttribute="top" secondItem="hzI-cT-m6c" secondAttribute="top" constant="150" id="DYm-lK-edd"/>
                                             <constraint firstItem="R4s-jG-Eod" firstAttribute="leading" secondItem="hzI-cT-m6c" secondAttribute="leading" id="Kgq-oi-G5w"/>
@@ -2149,9 +2167,6 @@
                                                                 <color key="tintColor" name="defaultColor"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                 <state key="normal" image="hidden"/>
-                                                                <connections>
-                                                                    <action selector="changePasswordAction:" destination="4nt-zG-eY4" eventType="touchUpInside" id="rnM-XN-9p8"/>
-                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -2173,9 +2188,12 @@
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="16"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                        <state key="normal" title="SUBMIT">
+                                                        <state key="normal" title="CREATE NEW PASSWORD">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="changePasswordAction:" destination="4nt-zG-eY4" eventType="touchUpInside" id="cVd-of-CoL"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -2282,11 +2300,12 @@
     <resources>
         <image name="delete (1)" width="32" height="32"/>
         <image name="girl-profile" width="800" height="534"/>
+        <image name="google" width="25" height="25"/>
         <image name="hidden" width="19" height="19"/>
         <image name="leaf" width="64" height="64"/>
         <image name="leaf-icon" width="128" height="128"/>
         <image name="left-arrow" width="32" height="32"/>
-        <image name="menu-select" width="45" height="45"/>
+        <image name="list-icon" width="30" height="30"/>
         <image name="pencil" width="32" height="32"/>
         <image name="plus-button" width="24" height="24"/>
         <image name="unselected" width="24" height="24"/>

@@ -7,11 +7,10 @@
 
 import Foundation
 import UIKit
-
 class ProfileDetailVC: UIViewController {
     
-//    MARK: IBOutlets and variable declaration
-  // title for dashboard
+    //    MARK: IBOutlets and variable declaration
+    // title for dashboard
     var titleArr: [String] = ["Name :" , "Email :" , "Phone :" , "Country: ", "Gender: ", "Hobby: "]
     var userDataArray: [String] = []
     var userInfo: UserData?
@@ -31,7 +30,7 @@ class ProfileDetailVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.getUserDetails()
-
+        
     }
     @IBAction func backButtonAction(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
@@ -45,7 +44,7 @@ class ProfileDetailVC: UIViewController {
             self.isFieldVisible = true
             print(self.isFieldVisible)
             self.tableView.reloadData()
-
+            
         }
     }
 }
@@ -57,7 +56,7 @@ extension ProfileDetailVC: UITableViewDelegate , UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DisplayProfileData") as! DisplayProfileData
-        cell.backgroundColor = ((indexPath.row % 2 ) == 0) ? ColorCode.profileContainer  : ColorCode.lightYellow
+        cell.backgroundColor = ((indexPath.row % 2 ) == 0) ? ColorCode.profileContainer  : ColorCode.whiteColour
         cell.setUserData(title: titleArr ,data: self.userDataArray, index: indexPath.row, visibility: self.isFieldVisible )
         return cell
     }
@@ -81,9 +80,10 @@ extension ProfileDetailVC{
                     self.userDataArray.append(unwrappeData.phoneNumber)
                     self.userDataArray.append(unwrappeData.country)
                     self.userDataArray.append(unwrappeData.gender)
-                    self.userDataArray.append(String(unwrappeData.hobby))
+                    let hobby = UserDefaults.standard.object(forKey: "hobby")
+                    (hobby == nil) ? self.userDataArray.append("Nil") : self.userDataArray.append(hobby as! String)
                 }
-            
+                
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }

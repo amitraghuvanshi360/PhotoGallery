@@ -44,6 +44,7 @@
 		0246FA5029F7DF3000D141D1 /* SetNewPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0246FA4F29F7DF3000D141D1 /* SetNewPassword.swift */; };
 		0274653E2A0A0D4B005DA027 /* PasswordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0274653D2A0A0D4B005DA027 /* PasswordModel.swift */; };
 		0278FEC629F27DDD00994035 /* UserRegistration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0278FEC529F27DDD00994035 /* UserRegistration.swift */; };
+		027DAE662A13B8F800C57247 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 027DAE652A13B8F800C57247 /* GoogleService-Info.plist */; };
 		02962AB629F100F60001ADE5 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02962AB529F100F60001ADE5 /* ImageViewController.swift */; };
 		02AD5F472A091B2600CBB09D /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AD5F462A091B2600CBB09D /* ChangePasswordVC.swift */; };
 		02CC8A5F29EE98F500232A83 /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CC8A5E29EE98F500232A83 /* CountryModel.swift */; };
@@ -113,6 +114,7 @@
 		0246FA4F29F7DF3000D141D1 /* SetNewPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetNewPassword.swift; sourceTree = "<group>"; };
 		0274653D2A0A0D4B005DA027 /* PasswordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordModel.swift; sourceTree = "<group>"; };
 		0278FEC529F27DDD00994035 /* UserRegistration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegistration.swift; sourceTree = "<group>"; };
+		027DAE652A13B8F800C57247 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		02962AB529F100F60001ADE5 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		02AD5F462A091B2600CBB09D /* ChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordVC.swift; sourceTree = "<group>"; };
 		02CC8A5E29EE98F500232A83 /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 				0233523229DEF5AB003BC72A /* Main.storyboard */,
 				0233523529DEF5AD003BC72A /* Assets.xcassets */,
 				0233523729DEF5AD003BC72A /* LaunchScreen.storyboard */,
+				027DAE652A13B8F800C57247 /* GoogleService-Info.plist */,
 				0233523A29DEF5AD003BC72A /* Info.plist */,
 			);
 			path = "gallery-project";
@@ -334,6 +337,7 @@
 				0233522629DEF5AB003BC72A /* Frameworks */,
 				0233522729DEF5AB003BC72A /* Resources */,
 				ADEECB3A90304E60CB57C3F4 /* [CP] Embed Pods Frameworks */,
+				309341B5CA2F0BCC19306C7C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -372,6 +376,7 @@
 				0233524629DEF5AD003BC72A /* Frameworks */,
 				0233524729DEF5AD003BC72A /* Resources */,
 				D0D771EA310C93E1ECFC71F8 /* [CP] Embed Pods Frameworks */,
+				A13275F85EE57E0ABE265805 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -437,6 +442,7 @@
 				0236633129FFCBC500583717 /* SlideMenu.xib in Resources */,
 				023D055729FA8787002B6F60 /* LoadingView.xib in Resources */,
 				0233523429DEF5AB003BC72A /* Main.storyboard in Resources */,
+				027DAE662A13B8F800C57247 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,6 +463,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		309341B5CA2F0BCC19306C7C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-gallery-project/Pods-gallery-project-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-gallery-project/Pods-gallery-project-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-gallery-project/Pods-gallery-project-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		5250C015FB9B8E80FF13E354 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -477,6 +500,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A13275F85EE57E0ABE265805 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-gallery-project-gallery-projectUITests/Pods-gallery-project-gallery-projectUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-gallery-project-gallery-projectUITests/Pods-gallery-project-gallery-projectUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-gallery-project-gallery-projectUITests/Pods-gallery-project-gallery-projectUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		ADEECB3A90304E60CB57C3F4 /* [CP] Embed Pods Frameworks */ = {

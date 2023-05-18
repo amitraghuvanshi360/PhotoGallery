@@ -24,6 +24,8 @@ struct APIUrls {
 
 class APIManager : NSObject {
     
+   
+    
     //    MARK: Login request api
     class func LoginRequestAPI(useremail: String, userpassword: String , completion:@escaping (User? , String) -> Void){
         let base_url = "\(Constant.BASE_URL)\(APIUrls.UserLogin)"
@@ -260,7 +262,6 @@ class APIManager : NSObject {
             
             if let dataObj = try? JSONDecoder().decode(SetNewPassword.self, from: getdata ) {
                 completion(dataObj.statusCode, dataObj.message)
-                
             }
         }).resume()
     }
@@ -287,11 +288,13 @@ class APIManager : NSObject {
                 print(error?.localizedDescription ?? "No data")
                 return
             }
+
             let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any]
-            
+
             if let dataObj = try? JSONDecoder().decode(ImageModel.self, from: data ) {
                 completion(dataObj)
             }
+ 
         }.resume()
     }
     

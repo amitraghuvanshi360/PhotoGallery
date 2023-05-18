@@ -10,7 +10,7 @@ import UIKit
 import iOSDropDown
 
 class SignupVC: BaseViewController, UINavigationControllerDelegate {
-//    MARK: IBOutlets and variable declaration
+    //    MARK: IBOutlets and variable declaration
     
     private var country: Country?
     var countryData = [String]()
@@ -61,7 +61,7 @@ class SignupVC: BaseViewController, UINavigationControllerDelegate {
         self.getCountryListAPI()
         self.setHobbyListData()
     }
-   
+    
     //MARK: - IB Button Actions
     @IBAction func backButtonAction(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
@@ -76,6 +76,7 @@ class SignupVC: BaseViewController, UINavigationControllerDelegate {
         let hobby = self.hobbyTextField.text
         let country = self.selectedCountry
         let hobbies = self.hobbyIndex
+        UserDefaults.standard.set(hobby, forKey: "hobby")
         let gender = self.selectedGender.trimmingCharacters(in: .whitespacesAndNewlines)
         guard  let name = userName, let email = userEmail, let password = userPassword, let mobile = mobileNumber  else{
             return
@@ -121,7 +122,7 @@ class SignupVC: BaseViewController, UINavigationControllerDelegate {
 extension SignupVC {
     //    MARK: setup layout initailization
     func setInitialLayout(){
-//          profile view border layout setup
+        //          profile view border layout setup
         self.profileView.layer.cornerRadius = min(self.profileView.frame.size.height, self.profileView.frame.size.width) / 2.0
         self.profileView.layer.borderWidth = 1
         self.profileView.clipsToBounds = true
@@ -146,7 +147,7 @@ extension SignupVC {
 
 //    MARK: Picker delegates
 extension SignupVC: UIImagePickerControllerDelegate {
-//    picker delegate and allow picking from photo library
+    //    picker delegate and allow picking from photo library
     @objc func selectProfileImage() {
         picker.delegate = self
         picker.sourceType = .photoLibrary
@@ -186,7 +187,7 @@ extension SignupVC: UIImagePickerControllerDelegate {
 
 
 extension SignupVC{
-//   MARK: Registration API
+    //   MARK: Registration API
     func registrationAPI(name:String , email: String, password:String , gender:String , country:String, mobile:String , hobbies:Int){
         DispatchQueue.global().async {
             APIManager.registrationAPIRequest(name: name, email: email, gender: gender, country: country, password: password, phoneNumber: mobile, selectedProfile: (self.pickerImageData.last ?? UIImage(named: "null-data"))!, hobbies: hobbies ?? 0) { data, errorMessage  in

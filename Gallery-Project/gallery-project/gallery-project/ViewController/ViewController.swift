@@ -8,7 +8,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet private weak var headerView: UIView!
     @IBOutlet private weak var profileView: UIView!
     @IBOutlet private weak var startedButton: UIButton!
@@ -34,13 +34,13 @@ extension ViewController{
         self.headerView.backgroundColor = ColorCode.darkblue
         self.headerView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
         
-//        MARK: Button style
+        //        MARK: Button style
         self.startedButton.layer.cornerRadius = 25
-
-//       MARK: Profile style
+        
+        //       MARK: Profile style
         self.profileView.layer.cornerRadius = min(self.profileView.frame.size.height, self.profileView.frame.size.width) / 2.0
         self.profileView.clipsToBounds = true
-
+        
         
     }
 }

@@ -17,7 +17,7 @@ class SlideMenu: UIView{
         return data
     }
     var delegate: PassDataDelegate?
-//    MARK: Outlets and variable declaration
+    //    MARK: Outlets and variable declaration
     var menuItemsData = ["Account Details" , "Change Password" , "Privacy", "Feedback" , "Rate" ,"Call Us" , "SignOut"]
     var menuItemIcon = [UIImage(named: "dashboard"), UIImage(named: "settings") , UIImage(named: "settings"),UIImage(named: "settings"), UIImage(named: "rate-us"),UIImage(named: "contact") , UIImage(named: "sign-out")]
     @IBOutlet var rootView: UIView!
@@ -31,12 +31,12 @@ class SlideMenu: UIView{
     }
     
     required init?(coder aDecoder: NSCoder) {
-       super.init(coder: aDecoder)
+        super.init(coder: aDecoder)
         commonInit()
         self.getUserDetails()
     }
     
-//   MARK: Initialization view and layout setup
+    //   MARK: Initialization view and layout setup
     private func commonInit(){
         Bundle.main.loadNibNamed("SlideMenu", owner: self)
         Bundle.main.loadNibNamed("TableViewCell", owner: self)
@@ -51,7 +51,7 @@ class SlideMenu: UIView{
         self.rootView.frame = self.bounds
         self.tableView.frame = self.bounds
         addSubview(self.rootView)
-    
+        
         self.rootView.autoresizingMask = [.flexibleHeight , .flexibleWidth]
     }
 }
@@ -69,10 +69,11 @@ extension SlideMenu: UITableViewDataSource, UITableViewDelegate,CellPassDataDele
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as! TableViewCell
-//        cell.completion = { [weak self] str in
-//            self?.delegate?.sendData(indexPath: str)
-//        }
+        //        cell.completion = { [weak self] str in
+        //            self?.delegate?.sendData(indexPath: str)
+        //        }
         cell.delegate = self
+        cell.selectionStyle = UITableViewCell.SelectionStyle.blue
         cell.setData(title: menuItemsData[indexPath.row] , icon: menuItemIcon[indexPath.row]!)
         return cell
     }
@@ -92,8 +93,13 @@ extension SlideMenu{
     //   MARK: Get user details API
     func getUserDetails(){
         let token = UserDefaults.standard.object(forKey: "token")
+        
+        guard let authToken = token else {
+            return
+        }
+        
         DispatchQueue.global().async {
-            APIManager.getUserDetailsRequestAPI(token: token as! String, completion: { [self] userData in
+            APIManager.getUserDetailsRequestAPI(token: authToken as! String, completion: { [self] userData in
                 guard let unwrappeData = userData?.data else {
                     return
                 }
@@ -131,12 +137,11 @@ class TableViewCell: UITableViewCell {
         self.imageIcon.image = icon
         self.dashboardTitle.setTitle(title, for: .normal)
     }
-
-
+    
+    
     @IBAction func dashboardMenuSelectionAction(_ sender: UIButton) {
         
         if let text = sender.titleLabel?.text {
-            //completion!(text)
             delegate?.sendData(indexPath: text)
         }
         
