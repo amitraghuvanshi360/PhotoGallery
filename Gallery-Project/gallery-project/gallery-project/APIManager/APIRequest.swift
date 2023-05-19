@@ -344,7 +344,7 @@ class APIManager : NSObject {
         })
     }
     
-    class func deleteImageRequestAPI(token: String ,imageId: Int , completion: @escaping (Int , String) -> ()){
+    class func deleteImageRequestAPI(token: String ,id: Int , completion: @escaping (Int , String) -> ()){
         let base_url = "\(Constant.BASE_URL)\(APIUrls.DeleteImage)"
         guard let url = URL.init(string: base_url) else {
             return
@@ -353,7 +353,7 @@ class APIManager : NSObject {
         
         urlRequest.httpMethod = "POST"
         
-        let params :[String: Any] = ["id" : imageId]
+        let params :[String: Any] = ["id" : id]
         
         let jsonData = try? JSONSerialization.data(withJSONObject: params)
         urlRequest.httpBody = jsonData

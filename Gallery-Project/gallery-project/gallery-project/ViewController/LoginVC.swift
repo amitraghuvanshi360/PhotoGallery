@@ -9,15 +9,11 @@ import Foundation
 import UIKit
 import GoogleSignIn
 
-protocol ValidationProtocol {
-    func validateEmail()
-}
-
 
 class LoginVC: BaseViewController {
     
-    var isFieldShow: Bool = true
     //    MARK: - IBOutlets and variable declaration
+    var isFieldShow: Bool = true
     @IBOutlet private weak var emailTextField: UITextField!
     @IBOutlet private weak var passwordTextField: UITextField!
     @IBOutlet private weak var continueButton: UIButton!
@@ -65,6 +61,7 @@ class LoginVC: BaseViewController {
         let userEmail = self.emailTextField.text!
         let userPassword = self.passwordTextField.text!
         let error = Validation.validateInputData(useremail: userEmail , userpassword: userPassword)
+        
         if !error.isEmpty{
             AlertController.CreateAlertMessage(title: Constant.error, message: error, viewController: self)
             return
@@ -141,8 +138,9 @@ extension LoginVC {
         UserDefaults.standard.set(email as String, forKey: "useremail")
         UserDefaults.standard.set(token, forKey: "token")
         UserDefaults.standard.set(expiration, forKey: "expiration")
-        UserDefaults.standard.object(forKey: "useremail")
         UserDefaults.standard.object(forKey: "token")
+        let email = UserDefaults.standard.object(forKey: "useremail")
+        
     }
     
     // API for validating user details email and password while doing login

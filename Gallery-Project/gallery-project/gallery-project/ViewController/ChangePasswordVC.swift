@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class ChangePasswordVC:BaseViewController{
+class ChangePasswordVC:BaseViewController , EmailDelegate{
     
     //MARK:   IBOutlets and variable declarations
     @IBOutlet private weak var emailView: UIView!
@@ -34,13 +34,10 @@ class ChangePasswordVC:BaseViewController{
     
     //    MARK: Change Password Action Button
     @IBAction func changePasswordAction(_ sender: Any) {
-        print("button pressed")
-        let savedEmail = UserDefaults.standard.object(forKey: "email")
-        let userEmail = self.emailTextField.text
+        var userEmail = self.emailTextField.text
         let currentPass = self.currentPassField.text
         let newPass = self.newPassTextField.text
         let confPass = self.confirmPassField.text
-        
         guard let email = userEmail, let currentPassword = currentPass , let newPassword = newPass , let confirmPassword = confPass else {
             return
         }
@@ -65,6 +62,8 @@ class ChangePasswordVC:BaseViewController{
 
 // MARK: Initials layout and api callls
 extension ChangePasswordVC{
+    
+//    initial layout setup
     func setLayout(){
         self.emailView.fieldLayoutStyle()
         self.currentPassView.fieldLayoutStyle()
@@ -73,6 +72,12 @@ extension ChangePasswordVC{
         self.changePassButton.layer.cornerRadius = 20
     }
     
+    func getEmailAddress(email: String) {
+        self.emailTextField.text = email
+    }
+
+
+//    change password Api request
     func changePasswordAPI(email:String, currentPassword:String , newPassword:String , confirmPassword:String){
         DispatchQueue.global().async { [self] in
             APIManager.changePasswordRequestAPI(email: email, currentPassword: currentPassword, newPassword: newPassword, confirmPassword: confirmPassword, completion: { dataObj in

@@ -12,11 +12,11 @@ import Foundation
 struct ImageModel: Codable {
     let statusCode: Int
     let message: String
-    let data: [Datum]?
+    let data: [ImageCollection]?
 }
 
-// MARK: - Datum
-struct Datum: Codable {
+// MARK: - ImageCollection
+struct ImageCollection: Codable {
     let id: Int
     let userImage: String
 }

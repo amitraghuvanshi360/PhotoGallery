@@ -45,14 +45,14 @@
                                         <constraint firstItem="WX9-yb-V8v" firstAttribute="centerX" secondItem="RHq-gu-Fob" secondAttribute="centerX" id="qE5-bn-xoW"/>
                                     </constraints>
                                 </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="asraghuvanshi@360gmail.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HaP-85-Ree">
-                                    <rect key="frame" x="68.5" y="237" width="277.5" height="21.5"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="test@gmail.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HaP-85-Ree">
+                                    <rect key="frame" x="134.5" y="237" width="145.5" height="21.5"/>
                                     <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" red="0.054901960784313725" green="0.13333333333333333" blue="0.082352941176470587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="RHq-gu-Fob" firstAttribute="centerY" secondItem="Rx4-QV-PCC" secondAttribute="centerY" id="Co8-rf-cGW"/>
                                 <constraint firstItem="HaP-85-Ree" firstAttribute="centerX" secondItem="RHq-gu-Fob" secondAttribute="centerX" id="O4u-Jz-Pye"/>

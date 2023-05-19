@@ -7,6 +7,11 @@
 
 import Foundation
 import UIKit
+protocol EmailDelegate {
+    func getEmailAddress(email: String)
+}
+
+
 class ProfileDetailVC: UIViewController {
     
     //    MARK: IBOutlets and variable declaration
@@ -15,6 +20,7 @@ class ProfileDetailVC: UIViewController {
     var userDataArray: [String] = []
     var userInfo: UserData?
     var isFieldVisible:Bool =  false
+    var delegate: EmailDelegate?
     @IBOutlet private weak var profileView: UIView!
     @IBOutlet private weak var profileContainer: UIView!
     @IBOutlet private weak var editProfileBttn: UIButton!
@@ -39,12 +45,12 @@ class ProfileDetailVC: UIViewController {
     @IBAction func editProfileAction(_ sender: Any) {
         if self.isFieldVisible{
             self.isFieldVisible = false
+            print(self.isFieldVisible)
             self.tableView.reloadData()
         }else{
             self.isFieldVisible = true
             print(self.isFieldVisible)
             self.tableView.reloadData()
-            
         }
     }
 }
@@ -56,13 +62,13 @@ extension ProfileDetailVC: UITableViewDelegate , UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DisplayProfileData") as! DisplayProfileData
-        cell.backgroundColor = ((indexPath.row % 2 ) == 0) ? ColorCode.profileContainer  : ColorCode.whiteColour
+        cell.backgroundColor = ((indexPath.row % 2 ) == 0) ? .white  : .white
         cell.setUserData(title: titleArr ,data: self.userDataArray, index: indexPath.row, visibility: self.isFieldVisible )
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100.0
+        return 80.0
     }
 }
 
@@ -82,6 +88,7 @@ extension ProfileDetailVC{
                     self.userDataArray.append(unwrappeData.gender)
                     let hobby = UserDefaults.standard.object(forKey: "hobby")
                     (hobby == nil) ? self.userDataArray.append("Nil") : self.userDataArray.append(hobby as! String)
+                    delegate?.getEmailAddress(email: unwrappeData.email)
                 }
                 
                 DispatchQueue.main.async {
@@ -93,7 +100,7 @@ extension ProfileDetailVC{
     
     func initLayout(){
         self.profileContainer.layer.cornerRadius = 10
-        self.profileContainer.backgroundColor = ColorCode.profileContainer
+        self.profileContainer.backgroundColor = .green
         
         self.profileView.layer.cornerRadius = min(self.profileView.frame.size.height, self.profileView.frame.size.width) / 2.0
         self.profileView.layer.borderWidth = 1

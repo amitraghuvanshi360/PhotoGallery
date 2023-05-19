@@ -20,6 +20,7 @@ struct ColorCode{
     static let lightGray =  UIColor(red: 244/255.0, green: 202/255.0, blue: 227/255.0, alpha: 1)
     static let lightYellow =  UIColor(red: 242/255.0, green: 235/255.0, blue: 203/255.0, alpha: 1)
     static let profileBackground =  UIColor(red: 32/255.0, green: 79/255.0, blue: 46/255.0, alpha: 1)
+    static let cellColour = UIColor(red: 253/255.0, green: 227/255.0, blue: 104/255.0, alpha: 1)
     static let whiteColour = UIColor.white
 
     

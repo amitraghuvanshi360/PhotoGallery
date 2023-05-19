@@ -52,7 +52,6 @@ struct Constant{
 }
 
 struct ConstantHeight {
-    
     static let screenWidth = UIScreen.main.bounds.width
     static let screenHeight = UIScreen.main.bounds.height
 }
@@ -65,5 +64,4 @@ struct Placeholder{
     static let enterCountry = "Update your country"
     static let enterGender = "Update your gender"
     static let hobby = "Update your hobbies"
-
 }

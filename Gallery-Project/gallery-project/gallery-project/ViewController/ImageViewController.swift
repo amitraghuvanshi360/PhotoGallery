@@ -56,7 +56,7 @@ extension ImageViewController {
 extension ImageViewController {
     func deleteImageAPI(authToken: String){
         DispatchQueue.global().async { [self] in
-            APIManager.deleteImageRequestAPI(token: authToken as! String, imageId: imageId, completion: { [self] statusCode , message in
+            APIManager.deleteImageRequestAPI(token: authToken as! String, id: imageId, completion: { [self] statusCode , message in
                 print(statusCode , message , self.imageId)
                 
                 DispatchQueue.main.async {

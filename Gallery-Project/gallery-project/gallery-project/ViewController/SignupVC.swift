@@ -60,6 +60,7 @@ class SignupVC: BaseViewController, UINavigationControllerDelegate {
         self.profileOnTapGesture()
         self.getCountryListAPI()
         self.setHobbyListData()
+        self.setCountryListData()
     }
     
     //MARK: - IB Button Actions
@@ -215,7 +216,7 @@ extension SignupVC{
                     for i in 0...(data.count) - 1 {
                         self.countryTextField.optionArray.append("\((data[i].name)) ")
                         self.codeTextField.optionArray.append("\(data[i].dialCode)")
-                        self.selectedCountry = data[i].name
+                       // self.selectedCountry = data[i].name
                         
                     }
                 }
@@ -229,6 +230,12 @@ extension SignupVC{
         self.hobbyTextField.didSelect{( selectedText , index , id) in
             self.hobbyTextField.text = "\(selectedText) \n index: \(index)"
             self.hobbyIndex =  index
+        }
+    }
+    
+    func setCountryListData(){
+        self.countryTextField.didSelect{(selectedText , index, id) in
+            self.selectedCountry = selectedText
         }
     }
 }

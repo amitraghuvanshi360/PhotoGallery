@@ -18,7 +18,8 @@ enum controllerViewType: String{
     case signout = "SignOut"
 }
 
-class HomeViewController: BaseViewController , UIImagePickerControllerDelegate & UINavigationControllerDelegate{
+class HomeViewController: BaseViewController , UIImagePickerControllerDelegate & UINavigationControllerDelegate , passSenderDelegate{
+    
     
     // MARK: IBOutlets and variable declaration
     var imagePicker = UIImagePickerController()
@@ -29,7 +30,6 @@ class HomeViewController: BaseViewController , UIImagePickerControllerDelegate &
     var indexPathRow =  IndexPath()
     var isSlideHidden = false
     @IBOutlet weak var menuBttn: UIButton!
-    @IBOutlet weak var imageDeleteBttn: UIButton!
     @IBOutlet private weak var assertBgView: UIView!
     @IBOutlet private weak var slideMenuView: SlideMenu!
     @IBOutlet private weak var firstCollectionView: UICollectionView!
@@ -40,7 +40,7 @@ class HomeViewController: BaseViewController , UIImagePickerControllerDelegate &
     @IBOutlet private weak var secondCollectionView: UICollectionView!
     
     var uploadImage: UIImage?
-    var imageData: [Datum] = []
+    var imageData: [ImageCollection] = []
     var isImageEmpty:String = ""
     
     override func viewDidLoad() {
@@ -54,6 +54,7 @@ class HomeViewController: BaseViewController , UIImagePickerControllerDelegate &
     //    MARK: DashBoard Menu hide show Action
     @IBAction func dashboardAction(_ sender: Any){
         self.slideMenuView.delegate = self
+        // show hide slide menu action
         self.showHideSlideMenu(isHidden: isSlideHidden)
         
     }
@@ -69,11 +70,21 @@ class HomeViewController: BaseViewController , UIImagePickerControllerDelegate &
         }
     }
     
-    @IBAction func deleteImageAction(_ sender: Any) {
-        let token =  UserDefaults.standard.object(forKey: "token")
-        self.deleteImageAPI(authToken: token as! String)
+    func imageDeletion(cell: SecondViewCell) {
+        if let indexPath = self.secondCollectionView.indexPath(for: cell){
+            let token = UserDefaults.standard.object(forKey: "token")
+            if !self.imageData.isEmpty{
+                self.deleteImageAPI(authToken: token as! String, imageId: self.imageData[indexPath.row].id)
+                self.imageData.remove(at: indexPath.row)
+                self.secondCollectionView.deleteItems(at: [indexPath])
+                self.firstCollectionView.deleteItems(at: [indexPath])
+            }
+        }
     }
     
+}
+// MARK: image picker delegates
+extension HomeViewController{
     // image picking
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true, completion: nil)
@@ -83,7 +94,6 @@ class HomeViewController: BaseViewController , UIImagePickerControllerDelegate &
             viewHeight.constant  = CGFloat((Double(self.imageData.count) / 2.0).rounded())  * (UIScreen.main.bounds.width + 20) / 2.0
         }
     }
-    
 }
 
 // MARK: Dashboard selection action
@@ -95,7 +105,7 @@ extension HomeViewController: PassDataDelegate{
         case controllerViewType.profile.rawValue:
             let pushVC =  self.storyboard?.instantiateViewController(withIdentifier: "ProfileDetailVC") as! ProfileDetailVC
             self.navigationController?.pushViewController(pushVC, animated: true)
-          
+            
             // display setting menu
         case controllerViewType.setting.rawValue:
             let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "ChangePasswordVC") as! ChangePasswordVC
@@ -106,7 +116,7 @@ extension HomeViewController: PassDataDelegate{
             if let url = URL(string: "https://www.q-tickets.com/Content/PrivacyPolicy") {
                 UIApplication.shared.open(url)
             }
-           
+            
             //  display feedback
         case controllerViewType.feedback.rawValue:
             let pushVC =  self.storyboard?.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
@@ -126,7 +136,7 @@ extension HomeViewController: PassDataDelegate{
             
             // logout from application
         case controllerViewType.signout.rawValue:
-            let pushVC =  self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
+            let pushVC =  self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
             self.navigationController?.pushViewController(pushVC, animated: true)
             
         default:
@@ -174,9 +184,9 @@ extension HomeViewController{
         }
     }
     //    MARK: Delete image API request
-    func deleteImageAPI(authToken: String){
+    func deleteImageAPI(authToken: String , imageId: Int){
         DispatchQueue.global().async { [self] in
-            APIManager.deleteImageRequestAPI(token: authToken as! String, imageId: imageId, completion: { [self] statusCode , message in
+            APIManager.deleteImageRequestAPI(token: authToken as! String, id: imageId , completion: { [self] statusCode , message in
                 print(statusCode , message , self.imageId)
                 DispatchQueue.main.async {
                     if statusCode == 200{
@@ -228,8 +238,10 @@ extension HomeViewController : UICollectionViewDelegate , UICollectionViewDataSo
             }else{
                 self.deleteImgIndex = indexPath.row
                 self.indexPathRow = indexPath
+                cell2.delegate = self
                 self.imageId = self.imageData[indexPath.row].id
                 cell2.setData(obj: self.imageData[indexPath.row])
+                
                 return cell2
             }
         }
@@ -237,12 +249,12 @@ extension HomeViewController : UICollectionViewDelegate , UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let imageVc = self.storyboard?.instantiateViewController(withIdentifier: "ImageViewController") as! ImageViewController
-        if !self.imageData.isEmpty{
-            self.imageData.remove(at: indexPath.row)
-            print(type(of: indexPath))
-            self.secondCollectionView.deleteItems(at: [indexPath])
-            self.firstCollectionView.deleteItems(at: [indexPath])
-        }
+        //        if !self.imageData.isEmpty{
+        //            self.imageData.remove(at: indexPath.row)
+        //            print(indexPath.row)
+        //            self.secondCollectionView.deleteItems(at: [indexPath])
+        //            self.firstCollectionView.deleteItems(at: [indexPath])
+        //        }
         //        self.navigationController?.pushViewController(imageVc, animated: true)
     }
     
@@ -290,7 +302,7 @@ extension HomeViewController{
         let timer = Timer.scheduledTimer(timeInterval: 4.0, target: self, selector: #selector(imageSlideToNext), userInfo: nil, repeats: true)
         self.view.setNeedsLayout()
     }
-//    To hide Slidemenu when view touches
+    //    To hide Slidemenu when view touches
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if self.isSlideHidden{
             self.showHideSlideMenu(isHidden: false)
@@ -328,9 +340,9 @@ extension HomeViewController{
 // MARK: Top Collection view cell class
 
 class CollectionViewCell : UICollectionViewCell {
-//    IBOutlets and variable declaration
+    //    IBOutlets and variable declaration
     @IBOutlet weak var firstImageVw: UIImageView!
-    func setData(obj: Datum) {
+    func setData(obj: ImageCollection) {
         if obj.userImage.contains("https://localhost:7184/") {
             let newImageUrl = obj.userImage.replacingOccurrences(of: "https://localhost:7184/", with: Constant.BASE_URL)
             self.firstImageVw.setImageData(urlStr: newImageUrl)
@@ -341,26 +353,29 @@ class CollectionViewCell : UICollectionViewCell {
 }
 
 // MARK: Main Collection View inside tableView
-protocol senderDelegate{
-    func sender(sender: UIButton)
+protocol passSenderDelegate{
+    func imageDeletion(cell : SecondViewCell)
 }
+
 class SecondViewCell : UICollectionViewCell{
     
-//     outlets and variables
+    //     outlets and variables
     @IBOutlet weak var deleteBttn: UIButton!
     @IBOutlet weak var secondImageVw: UIImageView!
-    var delegate: senderDelegate?
-//    Set data to imageView
-    func setData(obj: Datum) {
-        if obj.userImage.contains("ce2a3835-9d77-4dbc-837b-c6e249b953f4") {
+    var delegate: passSenderDelegate?
+    
+    //    Set data to imageView
+    func setData(obj: ImageCollection) {
+        if obj.userImage.contains("https://localhost:7184/") {
             let newImageUrl = obj.userImage.replacingOccurrences(of: "https://localhost:7184/", with: Constant.BASE_URL)
             self.secondImageVw.setImageData(urlStr: "http://192.168.1.148:5181/Resources/ProfileImages/ce2a3835-9d77-4dbc-837b-c6e249b953f4.jpg")
         }else{
             self.secondImageVw.setImageData(urlStr: obj.userImage)
         }
     }
-//     delete button action
+    
+    //     delete button action
     @IBAction func deleteButtonAction(_ sender: UIButton) {
-        delegate?.sender(sender: sender)
+        delegate?.imageDeletion(cell: self)
     }
 }
