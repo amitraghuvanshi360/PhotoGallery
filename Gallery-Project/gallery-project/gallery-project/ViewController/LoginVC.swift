@@ -73,9 +73,10 @@ class LoginVC: BaseViewController {
     
     @IBAction func loginWithGoogleAction(_ sender: Any) {
         GIDSignIn.sharedInstance()?.presentingViewController = self
-        GIDSignIn.sharedInstance()?.restorePreviousSignIn()
+//        GIDSignIn.sharedInstance()?.restorePreviousSignIn()
         GIDSignIn.sharedInstance().delegate = self
         let user = GIDSignIn.sharedInstance().currentUser
+        print(user)
         let profileUrl = user?.profile.imageURL(withDimension: 150)?.absoluteString ?? ""
         
         if ((user?.userID.isEmpty) != nil){
@@ -140,7 +141,6 @@ extension LoginVC {
         UserDefaults.standard.set(expiration, forKey: "expiration")
         UserDefaults.standard.object(forKey: "token")
         let email = UserDefaults.standard.object(forKey: "useremail")
-        
     }
     
     // API for validating user details email and password while doing login
@@ -195,7 +195,7 @@ extension LoginVC: GIDSignInDelegate{
         
         if !user.profile.email.isEmpty{
             print(user.profile.email)
+            self.navigationController?.pushViewController(homeVc, animated: true)
         }
-        self.navigationController?.pushViewController(homeVc, animated: true)
     }
 }

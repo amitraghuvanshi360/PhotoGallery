@@ -1829,7 +1829,7 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="0fF-rv-Sb5" firstAttribute="top" secondItem="hzI-cT-m6c" secondAttribute="top" constant="150" id="DYm-lK-edd"/>
                                             <constraint firstItem="R4s-jG-Eod" firstAttribute="leading" secondItem="hzI-cT-m6c" secondAttribute="leading" id="Kgq-oi-G5w"/>
@@ -2019,6 +2019,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hHE-Da-koE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5276.9230769230771" y="889.33649289099526"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="EN4-kh-q9y">
+            <objects>
+                <viewController id="8xB-ad-UKj" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bXt-4B-t7U">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KhC-nl-d3d">
+                                <rect key="frame" x="40" y="136" width="122" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XqE-c9-tJ2">
+                                        <rect key="frame" x="68" y="8" width="122" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZLX-GK-Fzh">
+                                <rect key="frame" x="233" y="146" width="122" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="cZH-rv-pA8"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uvP-Fn-ixP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6223.0769230769229" y="881.51658767772506"/>
         </scene>
         <!--Change PasswordVC-->
         <scene sceneID="pLb-bk-SNS">
